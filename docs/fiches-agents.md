@@ -1,4 +1,4 @@
-# Agents
+# 🤖 Agents
 
 [← La vue, écran par écran](README.md)
 
@@ -6,7 +6,11 @@ La fiche de chaque agent, et tout ce que la caméra a vu de lui.
 
 ![L'écran Agents à la fin du run, fiche du chef](images/fin-agents.png)
 
-## Ce que tu vois
+*L'écran Agents à la fin du run, fiche du chef*
+
+---
+
+## 👀 Ce que tu vois
 
 1. **Les sièges**, en haut, rangés par famille : chaque carte donne le rôle, le prénom, l'état (`fini`,
    `au travail`, `en veille`) et ce que l'agent a coûté. Un clic ouvre sa fiche.
@@ -17,13 +21,23 @@ La fiche de chaque agent, et tout ce que la caméra a vu de lui.
    modèle avec ses tokens et son coût, chaque appel d'outil avec sa durée, chaque mise en veille. Les filtres
    *messages*, *outils*, *échecs*, *sorties* et *compactages* isolent une sorte d'événement.
 
-## Pendant le run
+---
+
+## ⏱️ Pendant le run
 
 ![L'écran Agents à 19:38, run en cours](images/pendant-agents.png)
 
+*L'écran Agents à 19:38, run en cours*
+
 Pendant le run, les cartes montrent qui est au travail et qui dort, et la dépense de chacun à cet instant.
 
-## À quoi ça sert
+---
+
+## 🎯 À quoi ça sert
 
 À comprendre un agent en particulier : pourquoi il a coûté ce qu'il a coûté, ce qu'il a lu avant de répondre, où
 il a échoué. C'est l'écran à ouvrir quand un agent se comporte mal.
+
+---
+
+[← Fils](fils.md) · [↑ Sommaire](README.md) · [Trace →](trace.md)

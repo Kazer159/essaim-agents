@@ -1,4 +1,4 @@
-# Les règles fines de la salle
+# 📏 Les règles fines de la salle
 
 [← La vue, écran par écran](README.md)
 
@@ -9,12 +9,15 @@ Le **lanceur**, qui revient souvent ici, est le programme que tu démarres pour 
 il ne coûte rien, il tient la salle (il réveille, surveille, commite, rejoue les preuves et constate la fin). Voir
 [le lanceur et la vue](../README.md#le-lanceur-et-la-vue).
 
-## A. Parler et se réveiller
+---
 
-**A1. Un message est court et adressé.** Le prénom de celui qu'il concerne en tête, puis une décision, un fait
-ou une demande, en quelques lignes. Le détail (mesures, listes, diagnostics) va dans un fichier du dossier
-partagé, et le message donne son chemin : chaque message est relu par chaque agent qu'il réveille, et chacun le
-paie.
+## 💬 A. Parler et se réveiller
+
+**A1. Un message est court et adressé.** Le prénom de celui qu'il concerne en tête, puis une décision, un fait ou
+une demande, en quelques lignes.
+
+Le détail (mesures, listes, diagnostics) va dans un fichier du dossier partagé, et le message donne son chemin :
+chaque message est relu par chaque agent qu'il réveille, et chacun le paie.
 
 **A2. Le réveil par le prénom.** Un agent en veille ne se réveille que pour un message qui s'adresse **à lui
 seul**, son prénom en tête. Une liste de prénoms en tête (« Claude, Edmond, Denis : … ») ne réveille personne :
@@ -28,7 +31,9 @@ Répondre est un devoir.
 quand un ticket lui est confié ou qu'un message s'adresse à lui seul. Dans un run à rôles, les veilles sont sans
 limite. Quand tous ceux qui restent dorment, le run se ferme : une salle endormie est une salle finie.
 
-## B. Les rôles et leurs limites
+---
+
+## 🎭 B. Les rôles et leurs limites
 
 **B1. Les outils par rôle.** Un outil de la salle interdit à un rôle ne lui est même pas proposé : la recette n'a
 pas d'outil pour adopter un essai, le surveillant n'a qu'une courte liste d'outils, surtout de lecture.
@@ -48,13 +53,16 @@ programme qui l'assemble.
 **B5. Partir.** Un constructeur ne quitte pas le run de lui-même : il demande d'abord à celui qui répartit s'il
 reste du travail, puis attend sa réponse (dix minutes au plus).
 
-## C. Préparer avant de construire
+---
+
+## 📝 C. Préparer avant de construire
 
 **C1. La spec, puis le plan.** Le chef écrit `SPEC.md` (le but, le problème mesuré, l'approche et les options
-écartées, la preuve de chaque exigence), puis `PLAN.md` (le tableau des tickets). Deux fichiers de 6 000 signes
-au plus, chacun jugé par la recette et le gardien : `à revoir` avec ce qui manque, ou `valide`. Une version
-refusée revient au chef, qui en écrit une nouvelle. La spec validée par chaque contrôleur est figée. Le détail :
-[la spec : réfléchie, puis jugée](../README.md#la-spec--réfléchie-puis-jugée).
+écartées, la preuve de chaque exigence), puis `PLAN.md` (le tableau des tickets). Deux fichiers de 6 000 signes au
+plus, chacun jugé par la recette et le gardien : `à revoir` avec ce qui manque, ou `valide`.
+
+Une version refusée revient au chef, qui en écrit une nouvelle. La spec validée par chaque contrôleur est figée. Le
+détail : [la spec : réfléchie, puis jugée](../README.md#la-spec--réfléchie-puis-jugée).
 
 **C2. Les explorations.** Pendant la préparation, un constructeur ne reçoit qu'une exploration : une question dont
 la réponse est une mesure (un temps, un compte, une liste). On mesure avant de décider.
@@ -68,7 +76,9 @@ dépensé, le lanceur clôt la préparation et la salle construit quand même.
 **C5. Les engagements.** Les phrases d'une section `## Engagements` (« rien n'est publié »…) sont rangées à part :
 dites, suivies, listées au bilan, mais elles ne bloquent jamais l'acceptation.
 
-## D. Prouver sans croire sur parole
+---
+
+## 🔐 D. Prouver sans croire sur parole
 
 **D1. Les pancartes.** Avant d'écrire dans un fichier, un agent pose sa pancarte dessus. Celle d'un autre refuse
 `write` et `edit`, et annule ce qu'un `bash` y écrit. Pour toucher la part d'un autre, on ouvre un essai (une
@@ -93,7 +103,9 @@ c'est fini. Sinon, le run est **incomplet**, avec ce qui manque.
 **D6. La vérification en plusieurs commandes.** `## Vérification` accepte une suite de commandes, lancées l'une
 après l'autre, sans nettoyage entre deux : une couture ne se voit qu'en enchaînant.
 
-## E. Le lanceur qui surveille
+---
+
+## ⚙️ E. Le lanceur qui surveille
 
 **E1. Les garde-fous.** Le lanceur coupe un agent silencieux (aucun progrès depuis 15 minutes), un outil bloqué
 (plus de 10 minutes), ou une réponse emballée (30 appels identiques, des centaines de morceaux vides, une pensée
@@ -106,11 +118,12 @@ coupure sur la dépense **observée** : la requête en cours au moment de la cou
 rythme de dépense des 30 dernières minutes et le temps que tient le reste à ce rythme.
 
 **E4. Le surveillant.** Le lanceur mesure, sans dépenser un token, quatre signes d'une salle qui tourne en rond :
-le livrable sans commit depuis 45 minutes, trois rejeux échoués de la même exigence en 30 minutes, des tickets
-qui reprennent un ticket fermé dans l'heure, 30 minutes sans aucune attestation. Un signe réveille le
-surveillant, qui cherche le fait qui contredit la spec (« la spec suppose X, le run mesure Y ») et demande une
-révision. Le chef refuse avec sa raison, ou accepte : les tickets touchés sont gelés le temps de revoir la spec et
-le plan. Une révision à la fois, deux acceptées au plus.
+le livrable sans commit depuis 45 minutes, trois rejeux échoués de la même exigence en 30 minutes, des tickets qui
+reprennent un ticket fermé dans l'heure, 30 minutes sans aucune attestation.
+
+Un signe réveille le surveillant, qui cherche le fait qui contredit la spec (« la spec suppose X, le run mesure Y
+») et demande une révision. Le chef refuse avec sa raison, ou accepte : les tickets touchés sont gelés le temps de
+revoir la spec et le plan. Une révision à la fois, deux acceptées au plus.
 
 **E5. La dernière chance.** Si toute la salle dort alors qu'il reste du travail et de l'argent, le lanceur
 réveille le chef, trois fois au plus, avant de constater le run incomplet.
@@ -121,7 +134,9 @@ ramasse chaque minute les processus orphelins laissés dans le dossier du run (u
 **E7. Les relances sans coût.** Une erreur passagère du fournisseur relance l'agent sur la même session. Un
 résumé de mémoire raté est refait, la seconde fois sans images. Dans les deux cas, l'agent ne perd pas de passe.
 
-## F. Toi, pendant le run
+---
+
+## 🙋 F. Toi, pendant le run
 
 **F1. La pause et la veille de l'ordinateur.** *Pause*, dans la vue, arrête chaque agent dès qu'il n'a plus
 d'action en cours : plus rien ne tourne ni ne se paie. *Reprendre* relance chacun sur sa session. Si l'ordinateur
@@ -134,7 +149,11 @@ travail. Elle passe avant le reste de son travail ; voir [Parler au chef](chef.m
 (`--modele` et `--modele-femmes`), 20 agents au plus, à parts égales : le bilan donne la dépense et l'activité de
 chaque côté.
 
-## G. Les prénoms des agents
+---
+
+<a id="g-les-prénoms-des-agents"></a>
+
+## 🏷️ G. Les prénoms des agents
 
 **G1. Un prénom plutôt qu'un numéro.** Chaque agent porte un prénom du calendrier, sans accent : c'est plus lisible
 dans les fils et la trace. Ce prénom signe ses messages, ses pancartes, ses commits, sa session et son bureau. Tu ne
@@ -145,10 +164,11 @@ Claude, Denis, Edmond, Fabien, Gaston, Hubert, Jules, Lucien… jusqu'à Xavier,
 la liste de la relève prend la suite (Achille, Basile, Cyprien…).
 
 **G3. Les rôles suivent l'ordre des sièges.** Dans un run à rôles, les sièges sont attribués dans l'ordre : le chef
-d'abord, puis l'intégrateur, les constructeurs, la recette et le gardien. Avec huit agents sur une application,
-Antoine est donc toujours le chef, Bernard l'intégrateur, Claude à Fabien les constructeurs, Gaston la recette et
-Hubert le gardien. Le surveillant vient **en plus** des agents demandés et prend le premier prénom libre (Jules,
-ici).
+d'abord, puis l'intégrateur, les constructeurs, la recette et le gardien.
+
+Avec huit agents sur une application, Antoine est donc toujours le chef, Bernard l'intégrateur, Claude à Fabien les
+constructeurs, Gaston la recette et Hubert le gardien. Le surveillant vient **en plus** des agents demandés et
+prend le premier prénom libre (Jules, ici).
 
 **G4. Deux modèles : des agentes.** Avec `--modele-femmes`, le second modèle reçoit des prénoms féminins aux mêmes
 initiales (Agathe, Brigitte, Cecile…, Yvonne pour la dernière), à parts égales, en alternance avec les hommes : on
@@ -165,7 +185,11 @@ aussi bien par son prénom que par son surnom, écrit en mot entier en tête du 
 plutôt par son rôle quand on ne sait pas encore qui le tiendra (« le chef », « le gardien »). Pour qu'un message le
 réveille, son prénom doit être **seul en tête** (règle A2).
 
-## H. Penser au budget
+---
+
+<a id="h-penser-au-budget"></a>
+
+## 💰 H. Penser au budget
 
 Le budget n'est pas qu'une coupure au plafond : la salle est faite pour raisonner avec lui, du premier message au
 dernier. Les chiffres se suivent dans [le panneau du coût](cout.md).
@@ -197,8 +221,14 @@ ne tente plus de dernière chance : ce qui reste sert à terminer et à constate
 
 **H8. Mettre l'intelligence là où elle compte.** Chaque siège peut avoir son modèle (`--modele-role`) : un modèle
 fort, ou un abonnement, pour ceux qui décident et contrôlent (chef, gardien), un modèle bon marché pour ceux qui
-construisent. Le niveau de réflexion (`reflexion` dans `modeles.yaml`, ou `--reflexion`) se règle aussi : `medium`
-par défaut, plus haut quand la qualité du raisonnement vaut son coût.
+construisent.
+
+Le niveau de réflexion (`reflexion` dans `modeles.yaml`, ou `--reflexion`) se règle aussi : `medium` par défaut,
+plus haut quand la qualité du raisonnement vaut son coût.
 
 **H9. Comparer pour décider.** Le bilan d'un run donne la dépense, les tokens et les appels, par modèle quand il y en
 a deux. Deux runs sur la même mission, avec des réglages différents, disent ce que chaque dollar a acheté.
+
+---
+
+[← Le coût](cout.md) · [↑ Sommaire](README.md) · [Les outils des agents →](outils.md)

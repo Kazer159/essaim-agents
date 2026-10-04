@@ -2,17 +2,28 @@
 
 Une équipe d'agents IA qui réfléchit et construit ensemble.
 
+[Sécurité](#sécurité) · [La salle](#la-salle) · [Les rôles](#les-rôles) · [Le déroulé](#le-déroulé-dun-run) · [La vue](#le-lanceur-et-la-vue) · [Installer](#installer) · [Lancer](#lancer) · [Écrire une mission](#écrire-une-mission)
+
 Essaim fait travailler jusqu'à 40 agents IA sur une même mission, comme une vraie équipe. Tu écris la
-mission dans un fichier texte, tu lances, et les agents s'organisent pour livrer un seul résultat. Ils ne
+mission dans un fichier texte, tu lances, et les agents s'organisent pour livrer un seul résultat.
+
+Ils ne
 travaillent pas chacun dans leur coin : avant de construire, ils mesurent, se relisent et se contredisent,
 et ils continuent pendant tout le run.
 
 ![La vue pendant un run : la discussion, les tickets, et qui travaille sur quoi](docs/images/pendant-fils.png)
 
-**[Voir l'interface, écran par écran →](docs/README.md)** : chaque écran de la vue expliqué sur un run d'exemple.
-**[Les règles fines de la salle →](docs/regles.md)** : ce que le lanceur, les outils et le bac à sable font respecter.
+🖥️ **[Voir l'interface, écran par écran →](docs/README.md)** : chaque écran de la vue expliqué sur un run d'exemple.
 
+📏 **[Les règles fines de la salle →](docs/regles.md)** : ce que le lanceur, les outils et le bac à sable font respecter.
+
+🧰 **[Les outils des agents →](docs/outils.md)** : chaque outil, en une phrase, et qui a quoi selon son rôle.
+
+<a id="sécurité"></a>
 ## ⚠️ Sécurité, à lire avant d'essayer
+
+> [!WARNING]
+> Les agents exécutent de vraies commandes sur ta machine : lis cette section avant d'essayer.
 
 - Les agents exécutent de **vraies commandes shell sur ta machine**. Ils tournent dans un bac à sable macOS
   (`sandbox-exec`, profil `src/bac-a-sable.sb`) qui limite l'écriture au dossier du run et refuse l'accès à
@@ -27,7 +38,10 @@ et ils continuent pendant tout le run.
   l'utilise que sur une machine et un compte où c'est acceptable.
 - Rien n'est envoyé ailleurs qu'au fournisseur du modèle. La vue web n'écoute que sur `127.0.0.1`.
 
-## La salle
+---
+
+<a id="la-salle"></a>
+## 🏠 La salle
 
 Tous les agents sont dans une même salle virtuelle :
 
@@ -49,28 +63,34 @@ Tous les agents sont dans une même salle virtuelle :
   Bernard, Claude…) ; avec des rôles, Antoine est toujours le chef. Le détail est dans
   [les règles fines](docs/regles.md#g-les-prénoms-des-agents).
 
-## Les rôles
+---
+
+<a id="les-rôles"></a>
+## 🎭 Les rôles
 
 Une mission qui porte une section `## Type` fait attribuer des rôles (`src/roles.ts`, fiches dans
 `src/roles/`) :
 
-- **Le chef** découpe la mission en exigences, écrit la spec et le plan, et donne un ticket à chacun. Il
+- 🧭 **Le chef** découpe la mission en exigences, écrit la spec et le plan, et donne un ticket à chacun. Il
   n'écrit pas le produit.
-- **Les constructeurs** écrivent chacun leur part, dans leur propre branche git, avec sa preuve : un test
+- 🔨 **Les constructeurs** écrivent chacun leur part, dans leur propre branche git, avec sa preuve : un test
   ou une commande que les autres peuvent relancer.
-- **L'intégrateur** relance la preuve de chaque part, vérifie qu'elle s'emboîte avec les autres et l'adopte.
+- 🔗 **L'intégrateur** relance la preuve de chaque part, vérifie qu'elle s'emboîte avec les autres et l'adopte.
   Il tient le contrat entre les parts.
-- **L'assembleur** produit le livrable final à partir des parts adoptées.
-- **La recette** joue le premier utilisateur et signale chaque défaut avec une reproduction.
-- **Le gardien** vérifie que la réussite n'est pas truquée : test qui vérifie la mauvaise chose, règle de
+- 🧩 **L'assembleur** produit le livrable final à partir des parts adoptées.
+- ✅ **La recette** joue le premier utilisateur et signale chaque défaut avec une reproduction.
+- 🛡️ **Le gardien** vérifie que la réussite n'est pas truquée : test qui vérifie la mauvaise chose, règle de
   la mission assouplie, mesure arrangée.
-- **Le surveillant** dort la plupart du temps ; il se réveille quand l'équipe tourne en rond et cherche
+- 👁️ **Le surveillant** dort la plupart du temps ; il se réveille quand l'équipe tourne en rond et cherche
   l'erreur dans le raisonnement de départ.
 
 La recette, le gardien et le surveillant ne peuvent pas modifier le produit : le bac à sable les en empêche.
 Celui qui contrôle n'est jamais celui qui construit.
 
-## Le déroulé d'un run
+---
+
+<a id="le-déroulé-dun-run"></a>
+## 🔄 Le déroulé d'un run
 
 1. **Préparation** : le chef range chaque phrase de la mission en exigences ; les constructeurs font des
    explorations, des questions dont la réponse est une mesure.
@@ -88,12 +108,17 @@ Celui qui contrôle n'est jamais celui qui construit.
 7. **La fin** : le run n'est accepté que si toutes les alertes sont fermées et toutes les exigences
    attestées. Aucun agent ne peut déclarer seul que c'est fini.
 
-## La spec : réfléchie, puis jugée
+---
+
+<a id="la-spec--réfléchie-puis-jugée"></a>
+## 📝 La spec : réfléchie, puis jugée
 
 Avant que quiconque construise, la salle écrit et fait juger sa façon de résoudre la mission. C'est la spec.
 
 **Le chef la réfléchit.** Il commence par mesurer : il confie des explorations aux constructeurs (« combien de
-réservations un vendredi ? »), dont la réponse est un chiffre, pas une opinion. Puis il écrit `SPEC.md`, 6 000
+réservations un vendredi ? »), dont la réponse est un chiffre, pas une opinion.
+
+Puis il écrit `SPEC.md`, 6 000
 signes au plus :
 
 - **le but** en une phrase ;
@@ -127,7 +152,10 @@ nouveau, et les tickets touchés sont gelés en attendant.
 Pour que la salle ne discute pas sans fin, le lanceur clôt la préparation après 45 minutes sans plan validé, ou
 quand un quart du budget est dépensé.
 
-## Le lanceur et la vue
+---
+
+<a id="le-lanceur-et-la-vue"></a>
+## ⚙️ Le lanceur et la vue
 
 **Le lanceur, c'est le programme que tu démarres** (`just lancer`, ou `bun src/lancer.ts`). Ce n'est pas une IA :
 il ne réfléchit pas, ne décide rien du travail et ne coûte aucun token. Il tient la salle, comme un surveillant
@@ -154,7 +182,10 @@ La vue (`just vue`, puis http://127.0.0.1:4700) suit le run en direct : le fil d
 chaque agent, les tickets, l'historique git, et une vue 3D en forme de cerveau qui montre qui parle à qui.
 On peut mettre en pause, reprendre, ou envoyer une consigne au chef.
 
-## Installer
+---
+
+<a id="installer"></a>
+## 📦 Installer
 
 Prérequis : **macOS sur Apple Silicon**, [Bun](https://bun.sh) 1.4 ou plus, [`just`](https://github.com/casey/just)
 (facultatif), et l'agent [pi](https://www.npmjs.com/package/@earendil-works/pi-coding-agent) 0.85.1 dans
@@ -168,7 +199,10 @@ mkdir -p runs
 bun run test                                           # sans aucun token : un faux pi joue les agents
 ```
 
-## Lancer
+---
+
+<a id="lancer"></a>
+## 🚀 Lancer
 
 ```sh
 just lancer 6 deepseek-flash-41 0.50 missions/exemples/roles-mini.md
@@ -176,7 +210,9 @@ just lancer 6 deepseek-flash-41 0.50 missions/exemples/roles-mini.md
 ```
 
 Les modèles sont décrits dans `modeles.yaml`. Deux modèles dans la même salle :
-`just lancer-mixte 6 deepseek-flash-41 glm-flash-53 0.50 <mission>`. Chaque run vit dans `runs/<horodatage>/` :
+`just lancer-mixte 6 deepseek-flash-41 glm-flash-53 0.50 <mission>`.
+
+Chaque run vit dans `runs/<horodatage>/` :
 le tableau, le dossier partagé, les sessions et le journal.
 
 Une mission est un fichier Markdown : voir [Écrire une mission](#écrire-une-mission) plus bas.
@@ -193,7 +229,10 @@ Les missions du dépôt, avec leurs données dans `missions/entrees/` et leurs j
 - `ligne.md` : une année de trains sur une ligne de montagne, simulée et affichée.
 - `exemples/roles-mini.md` : une petite mission pour essayer les rôles sans dépenser beaucoup.
 
-## Modèles et abonnements
+---
+
+<a id="modèles-et-abonnements"></a>
+## 🧠 Modèles et abonnements
 
 Les modèles sont décrits dans `modeles.yaml` : un alias, l'identifiant chez pi, le niveau de réflexion et, au
 besoin, un tarif. Par défaut, ils passent par OpenRouter et le plafond compte chaque centime.
@@ -208,14 +247,20 @@ bun src/lancer.ts --agents 8 --modele deepseek-flash-41 --plafond 2 --mission mi
 ```
 
 Les constructeurs restent sur un modèle bon marché d'OpenRouter, le chef et le gardien raisonnent avec le modèle de
-l'abonnement. Le tarif de l'abonnement est à 0 dans `modeles.yaml` : le plafond ne compte que ce qui passe par
-OpenRouter, et le quota du forfait n'est pas suivi par l'essaim. Il faut s'être connecté une fois dans pi
-(`pi`, puis `/login`).
+l'abonnement.
+
+> [!NOTE]
+> Le tarif de l'abonnement est à 0 dans `modeles.yaml` : le plafond ne compte que ce qui passe par
+> OpenRouter, et le quota du forfait n'est pas suivi par l'essaim. Il faut s'être connecté une fois dans pi
+> (`pi`, puis `/login`).
 
 **Prochain objectif : un abonnement Claude.** Faire tourner les agents, ou au moins les sièges uniques, sur un
 abonnement Claude, comme c'est déjà possible avec Codex.
 
-## Écrire une mission
+---
+
+<a id="écrire-une-mission"></a>
+## ✍️ Écrire une mission
 
 La mission est le seul texte que les agents reçoivent de toi. Tout ce qu'elle ne dit pas, ils le décideront à ta
 place.
@@ -223,7 +268,9 @@ place.
 **1. Un but précis et détaillé : obligatoire.** Avant toute section, la mission dit ce qu'on veut obtenir, pour
 qui, dans quelle situation, et ce qui compte le plus. Un but vague (« une appli de réservation ») laisse les agents
 remplir les trous à leur façon, et le gardien ne peut pas dire si la réussite est vraie. Un but précis se mesure :
-« pendant une soirée tirée au hasard, aucun client n'attend plus de dix minutes ». Le lanceur ne vérifie pas le but
+« pendant une soirée tirée au hasard, aucun client n'attend plus de dix minutes ».
+
+Le lanceur ne vérifie pas le but
 à ta place : c'est la règle d'écriture qui compte le plus.
 
 **2. Les sections.** Les titres s'écrivent exactement ainsi ; un titre presque bon (« ## Vérifications ») est
@@ -285,11 +332,17 @@ Ce qui la rend bonne : le but dit **pour qui** (un serveur, un soir de service),
 serveur ni internet) et **la limite qui compte** (jamais plus de quarante couverts, avec un message utile). Le chef
 en tire deux exigences prouvables, E1 et E2, et le gardien peut écrire son propre cas pour la limite.
 
-## Comment il a été construit
+---
+
+<a id="comment-il-a-été-construit"></a>
+## 🛠️ Comment il a été construit
 
 Le code (TypeScript sur Bun, plus de 1 000 tests), les specs et les plans ont été écrits avec Claude Code.
 Chaque règle vient d'un défaut constaté dans un vrai run ; les commentaires du code en gardent la trace.
 
-## Licence
+---
+
+<a id="licence"></a>
+## 📄 Licence
 
 MIT, voir `LICENSE`.

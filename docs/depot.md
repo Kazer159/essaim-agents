@@ -1,4 +1,4 @@
-# Dépôt
+# 📦 Dépôt
 
 [← La vue, écran par écran](README.md)
 
@@ -7,7 +7,11 @@ essais.
 
 ![L'écran Dépôt à la fin du run](images/fin-depot.png)
 
-## Ce que tu vois
+*L'écran Dépôt à la fin du run*
+
+---
+
+## 👀 Ce que tu vois
 
 1. **Les tickets** : combien sont ouverts, en cours ou fermés, et la liste dépliable. Chaque ticket se ferme avec
    un motif : `livre` sur le commit qui le livre, `corrige` pour une alerte, `annule`…
@@ -25,7 +29,13 @@ essais.
    lui, et le propose avec sa preuve. Ici, Claude a ouvert *annonce-du-refus* sur `index.html`, la part de Bernard,
    qui l'a rejoué et adopté.
 
-## À quoi ça sert
+---
+
+## 🎯 À quoi ça sert
 
 À vérifier sans croire personne sur parole. Un agent peut affirmer que sa part marche ; seul un reçu du lanceur
 qui passe le prouve. Et l'historique git dit qui a écrit chaque ligne, quand, et pourquoi.
+
+---
+
+[← Cerveau](cerveau.md) · [↑ Sommaire](README.md) · [Mémoire →](memoire.md)

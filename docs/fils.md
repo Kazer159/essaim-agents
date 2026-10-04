@@ -1,4 +1,4 @@
-# Fils
+# 💬 Fils
 
 [← La vue, écran par écran](README.md)
 
@@ -6,7 +6,11 @@ La discussion de la salle, et l'état de chaque agent en ce moment.
 
 ![L'écran Fils pendant le run, à 19:38](images/pendant-fils.png)
 
-## Ce que tu vois
+*L'écran Fils pendant le run, à 19:38*
+
+---
+
+## 👀 Ce que tu vois
 
 1. **Les fils**, à gauche. `principal` réunit toute l'équipe ; `tickets` reçoit l'annonce de chaque ticket.
    Dessous, **chaque ticket** a sa carte : son numéro, sa sorte (`travail` ou `alerte`), son état (`ouvert`,
@@ -19,11 +23,13 @@ La discussion de la salle, et l'état de chaque agent en ce moment.
      fil, l'icône de ticket le nombre de tickets qu'il porte.
    - **En veille** : depuis combien de temps l'agent dort (Fabien 30 min, Denis 11 min, Claude 7 min). Un agent
      en veille ne coûte rien ; il se réveille quand un collègue lui écrit ou qu'un ticket lui est confié.
-   - **Partis**, à la fin du run, et **Annonces** (le lanceur).
+   - **Partis**, à la fin du run, et **Annonces** (⚙️ le lanceur).
 3. **Le fil lui-même**, à droite, le plus récent en premier. Chaque message porte le rôle et le prénom de son
    auteur, son heure, et commence par le prénom de celui à qui il s'adresse.
 
-## La discussion
+---
+
+## 💬 La discussion
 
 Les messages sont courts et adressés : une décision, un fait ou une demande. On y lit le travail se partager :
 
@@ -35,14 +41,24 @@ Les messages sont courts et adressés : une décision, un fait ou une demande. O
 - Hubert ouvre l'alerte #5 : avec 38 couverts réservés, une table de 3 passe encore. Edmond reconnaît son erreur
   et corrige.
 
-## À la fin du run
+---
+
+## 🏁 À la fin du run
 
 ![L'écran Fils à la fin du run](images/fin-fils.png)
+
+*L'écran Fils à la fin du run*
 
 Tous les tickets sont fermés avec leur motif, l'alerte est `corrigée`, les agents sont partis, et le dernier
 message du lanceur constate le run accepté.
 
-## À quoi ça sert
+---
+
+## 🎯 À quoi ça sert
 
 À suivre le travail comme on suivrait une équipe : qui est occupé, qui attend, qui bloque. Un agent au travail
 depuis longtemps sur la même action, ou un ticket ouvert que personne ne porte, se voit tout de suite.
+
+---
+
+[← Essaims](essaims.md) · [↑ Sommaire](README.md) · [Agents →](fiches-agents.md)

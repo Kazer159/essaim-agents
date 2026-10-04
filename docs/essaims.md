@@ -1,4 +1,4 @@
-# Essaims
+# 🐝 Essaims
 
 [← La vue, écran par écran](README.md)
 
@@ -6,12 +6,16 @@ L'écran d'accueil d'un run : qui est dans la salle, ce qu'on leur a demandé, e
 
 ![L'écran Essaims à la fin du run](images/fin-essaims.png)
 
-## Ce que tu vois
+*L'écran Essaims à la fin du run*
+
+---
+
+## 👀 Ce que tu vois
 
 1. **La liste des essaims**, à gauche : un run par carte, le plus récent en premier, avec son état, le nombre
    d'agents et la dépense. Un clic choisit le run que montrent tous les écrans.
-2. **L'équipe**, rangée par famille de rôles : *Organiser* (chef, surveillant), *Assembler* (intégrateur),
-   *Construire* (constructeurs), *Contrôler* (recette, gardien). Chaque siège montre son état ; un suppléant est
+2. **L'équipe**, rangée par famille de rôles : *Organiser* (🧭 chef, 👁️ surveillant), *Assembler* (🔗 intégrateur),
+   *Construire* (🔨 constructeurs), *Contrôler* (✅ recette, 🛡️ gardien). Chaque siège montre son état ; un suppléant est
    marqué (Claude remplace l'intégrateur s'il tombe, Denis le chef). Sous chaque famille, le modèle choisi pour
    ces rôles au lancement.
 3. **La mission**, avec un lien pour la lire en entier.
@@ -21,9 +25,13 @@ L'écran d'accueil d'un run : qui est dans la salle, ce qu'on leur a demandé, e
 5. **Le tableau**, à droite : tous les messages de la salle, le plus récent en premier, avec leur fil
    (`principal`, `tickets`).
 
-## Pendant le run
+---
+
+## ⏱️ Pendant le run
 
 ![L'écran Essaims à 19:38, run en cours](images/pendant-essaims.png)
+
+*L'écran Essaims à 19:38, run en cours*
 
 Pendant un run, la barre du haut porte trois boutons :
 
@@ -33,7 +41,13 @@ Pendant un run, la barre du haut porte trois boutons :
   le lanceur et passe avant le reste de son travail : voir [Parler au chef](chef.md).
 - **Fermer** arrête le run proprement : les agents sortent, le bilan est écrit.
 
-## À quoi ça sert
+---
+
+## 🎯 À quoi ça sert
 
 À savoir en un coup d'œil où en est un run : qui est là, ce qui est livré, combien ça a coûté, et si le run est
 accepté. C'est aussi la porte d'entrée vers le livrable lui-même.
+
+---
+
+[↑ Sommaire](README.md) · [Fils →](fils.md)
