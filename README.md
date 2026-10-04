@@ -10,6 +10,7 @@ et ils continuent pendant tout le run.
 ![La vue pendant un run : la discussion, les tickets, et qui travaille sur quoi](docs/images/pendant-fils.png)
 
 **[Voir l'interface, écran par écran →](docs/README.md)** : chaque écran de la vue expliqué sur un run d'exemple.
+**[Les règles fines de la salle →](docs/regles.md)** : ce que le lanceur, les outils et le bac à sable font respecter.
 
 ## ⚠️ Sécurité, à lire avant d'essayer
 
@@ -39,6 +40,9 @@ Tous les agents sont dans une même salle virtuelle :
 - **Le budget commun** : quand il est épuisé, tout le monde s'arrête.
 - **La veille** : un agent sans travail s'endort et ne coûte plus rien ; il se réveille quand un collègue
   lui écrit. Quand tout le monde dort, le run est terminé.
+- **Les prénoms** : chaque agent porte un prénom du calendrier, attribué par le lanceur dans l'ordre (Antoine,
+  Bernard, Claude…) ; avec des rôles, Antoine est toujours le chef. Le détail est dans
+  [les règles fines](docs/regles.md#g-les-prénoms-des-agents).
 
 ## Les rôles
 
@@ -114,7 +118,7 @@ Les modèles sont décrits dans `modeles.yaml`. Deux modèles dans la même sall
 `just lancer-mixte 6 deepseek-flash-41 glm-flash-53 0.50 <mission>`. Chaque run vit dans `runs/<horodatage>/` :
 le tableau, le dossier partagé, les sessions et le journal.
 
-Une mission est un fichier Markdown : le but, et au besoin `## Type`, `## Livrable` et `## Vérification`.
+Une mission est un fichier Markdown : voir [Écrire une mission](#écrire-une-mission) plus bas.
 Les missions du dépôt, avec leurs données dans `missions/entrees/` et leurs juges dans `sondes/` :
 
 - `hopital.md` : un programme qui construit le planning de quatre semaines d'un service de médecine
@@ -127,6 +131,76 @@ Les missions du dépôt, avec leurs données dans `missions/entrees/` et leurs j
 - `festival.md` : l'application d'un festival, en trois identités visuelles et huit tailles d'écran.
 - `ligne.md` : une année de trains sur une ligne de montagne, simulée et affichée.
 - `exemples/roles-mini.md` : une petite mission pour essayer les rôles sans dépenser beaucoup.
+
+## Écrire une mission
+
+La mission est le seul texte que les agents reçoivent de toi. Tout ce qu'elle ne dit pas, ils le décideront à ta
+place.
+
+**1. Un but précis et détaillé : obligatoire.** Avant toute section, la mission dit ce qu'on veut obtenir, pour
+qui, dans quelle situation, et ce qui compte le plus. Un but vague (« une appli de réservation ») laisse les agents
+remplir les trous à leur façon, et le gardien ne peut pas dire si la réussite est vraie. Un but précis se mesure :
+« pendant une soirée tirée au hasard, aucun client n'attend plus de dix minutes ». Le lanceur ne vérifie pas le but
+à ta place : c'est la règle d'écriture qui compte le plus.
+
+**2. Les sections.** Les titres s'écrivent exactement ainsi ; un titre presque bon (« ## Vérifications ») est
+refusé au lancement, pour ne pas être ignoré en silence.
+
+| Section | Rôle | |
+|---|---|---|
+| `## C'est fini quand` | ce que le juge constatera, en phrases prouvables | **exigée** : sans elle, le lanceur refuse la mission |
+| `## Type` | `application`, `jeu`, `simulation`, `document`, `probleme` ou `fichier` : donne des rôles à la salle | conseillée |
+| `## Livrable` | le fichier final, relatif au dossier partagé (`index.html`) | conseillée |
+| `## Vérification` | une ou plusieurs commandes, rejouées par le lanceur à la fin | conseillée |
+| `## Engagements` | les règles de conduite (« rien n'est publié ») : suivies, jamais bloquantes | si besoin |
+
+**3. Chaque exigence dit comment elle se prouve** : une commande que le lanceur peut rejouer, ou le cas d'un juge.
+Une phrase qu'aucune commande ne peut prouver n'est pas une exigence : mets-la dans le but ou dans le contexte.
+
+**4. Les interdictions de conduite vont dans `## Engagements`**, pas dans les exigences : sinon le run ne peut
+jamais être accepté sur elles.
+
+**5. « C'est fini quand » ne contient que des phrases prouvables**, au sens de la règle 3.
+
+**6. Le monde en données.** Les chiffres qui décident de la réussite (durées, capacités, tarifs, règles) vont dans
+des fichiers de données, donnés au lancement avec `--fichier` (répétable, 50 Ko par fichier). Ils arrivent dans le
+dossier des documents à traiter, en lecture seule pour tous les agents, et `{ENTREES}` dans la mission donne leurs
+chemins ; ceux des missions du dépôt sont dans `missions/entrees/`. Le juge peut alors les remplacer par les siens :
+une réussite obtenue en changeant le monde (une cuisson ramenée de 14 à 4 minutes…) ne passe plus.
+
+**Un exemple complet**, celui du [run d'exemple de la documentation](docs/README.md) :
+
+```markdown
+# Les réservations du Refuge
+
+Le Refuge est un petit restaurant de quarante places. Il veut une page web pour prendre les réservations du soir,
+ouvrable en double-clic, sans serveur et sans internet.
+
+Le serveur saisit le nom du client, l'heure et le nombre de couverts, puis valide. La réservation apparaît aussitôt
+dans la liste du soir, triée par heure. Un compteur affiche les places qui restent. Une réservation qui ferait
+dépasser quarante couverts est refusée, avec un message qui dit combien de places il reste.
+
+## Type
+
+application
+
+## C'est fini quand
+
+`index.html` existe dans le dossier partagé, s'ouvre sans erreur, enregistre une réservation, la montre dans la
+liste triée par heure, et refuse une réservation qui dépasse quarante couverts.
+
+## Livrable
+
+index.html
+
+## Vérification
+
+grep -q "Réservations" index.html
+```
+
+Ce qui la rend bonne : le but dit **pour qui** (un serveur, un soir de service), **dans quelle situation** (sans
+serveur ni internet) et **la limite qui compte** (jamais plus de quarante couverts, avec un message utile). Le chef
+en tire deux exigences prouvables, E1 et E2, et le gardien peut écrire son propre cas pour la limite.
 
 ## Comment il a été construit
 

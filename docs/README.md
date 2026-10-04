@@ -48,5 +48,8 @@ Deux moments sont montrés : **pendant** le run (19:38, juste après l'alerte d'
 8. [Parler au chef](chef.md) : glisser une consigne au chef pendant le run, et suivre ce qu'elle devient.
 9. [Le coût](cout.md) : la dépense, le plafond, la durée, les appels et les tokens.
 
+Et pour aller plus loin : [les règles fines de la salle](regles.md), tout ce que le lanceur, les outils et le bac à
+sable font respecter pendant un run.
+
 En haut de chaque écran, la même barre : l'état du run (`accepté`, ou les boutons **Pause**, **Chef** et
 **Fermer** pendant un run), la phrase d'état et la dépense par rapport au plafond, dont le détail s'ouvre d'un clic.
