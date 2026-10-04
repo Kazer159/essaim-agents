@@ -22,6 +22,9 @@ et ils continuent pendant tout le run.
 - Il faut **ta propre clé OpenRouter**, lue dans `~/.config/essaim/openrouter.key` (ou
   `ESSAIM_CLE_OPENROUTER`). Un run coûte de quelques centimes à quelques dollars : crée une clé dédiée
   avec un plafond de dépense. Le lanceur coupe aussi tout au plafond donné par `--plafond`.
+- Avec un **abonnement** (voir *Modèles et abonnements*), pi garde lui-même son jeton de connexion : les agents qui
+  tournent sur cet abonnement lisent alors le dossier de pi du compte (`~/.pi/agent`, `auth.json` compris). Ne
+  l'utilise que sur une machine et un compte où c'est acceptable.
 - Rien n'est envoyé ailleurs qu'au fournisseur du modèle. La vue web n'écoute que sur `127.0.0.1`.
 
 ## La salle
@@ -131,6 +134,28 @@ Les missions du dépôt, avec leurs données dans `missions/entrees/` et leurs j
 - `festival.md` : l'application d'un festival, en trois identités visuelles et huit tailles d'écran.
 - `ligne.md` : une année de trains sur une ligne de montagne, simulée et affichée.
 - `exemples/roles-mini.md` : une petite mission pour essayer les rôles sans dépenser beaucoup.
+
+## Modèles et abonnements
+
+Les modèles sont décrits dans `modeles.yaml` : un alias, l'identifiant chez pi, le niveau de réflexion et, au
+besoin, un tarif. Par défaut, ils passent par OpenRouter et le plafond compte chaque centime.
+
+**Un abonnement dans un run : c'est fait pour Codex.** Un run peut faire tourner une partie de ses agents sur un
+abonnement ChatGPT, par le fournisseur `openai-codex` de pi (alias `sol-codex`, GPT-6 Sol). On le donne en
+général aux sièges uniques, ceux qui décident et contrôlent :
+
+```sh
+bun src/lancer.ts --agents 8 --modele deepseek-flash-41 --plafond 2 --mission missions/hotel.md \
+  --modele-role chef=sol-codex --modele-role gardien=sol-codex
+```
+
+Les constructeurs restent sur un modèle bon marché d'OpenRouter, le chef et le gardien raisonnent avec le modèle de
+l'abonnement. Le tarif de l'abonnement est à 0 dans `modeles.yaml` : le plafond ne compte que ce qui passe par
+OpenRouter, et le quota du forfait n'est pas suivi par l'essaim. Il faut s'être connecté une fois dans pi
+(`pi`, puis `/login`).
+
+**Prochain objectif : un abonnement Claude.** Faire tourner les agents, ou au moins les sièges uniques, sur un
+abonnement Claude, comme c'est déjà possible avec Codex.
 
 ## Écrire une mission
 
