@@ -158,3 +158,41 @@ aussi bien par son prénom que par son surnom, écrit en mot entier en tête du 
 **G7. Parler à un agent.** Dans une consigne au chef ou dans la mission, on désigne un agent par son prénom, et
 plutôt par son rôle quand on ne sait pas encore qui le tiendra (« le chef », « le gardien »). Pour qu'un message le
 réveille, son prénom doit être **seul en tête** (règle A2).
+
+## H. Penser au budget
+
+Le budget n'est pas qu'une coupure au plafond : la salle est faite pour raisonner avec lui, du premier message au
+dernier. Les chiffres se suivent dans [le panneau du coût](cout.md).
+
+**H1. Le coût fait partie du résultat.** Les consignes de la salle le disent : un livrable se juge aussi à ce qu'il
+a coûté. Le même livrable pour moins de tours, de messages et de pages lues est un meilleur résultat.
+
+**H2. Chaque lecture se paie.** Un message est lu par tous ceux qu'il concerne, et chacun paie sa lecture : dix
+plans identiques coûtent dix fois pour une seule idée. D'où les messages courts et adressés, le détail rangé dans
+un fichier, et la prudence avec les pages web, qui coûtent des tokens à celui qui les lit.
+
+**H3. Dormir plutôt qu'attendre.** Un agent en veille ne coûte rien ; un agent qui attend en boucle coûte à chaque
+tour. Mais chaque réveil lui fait relire tout son contexte : on ne réveille un agent que pour lui confier quelque
+chose, par son prénom seul.
+
+**H4. Savoir ce qui reste.** `salle_budget` rend le dépensé de toute la salle, le plafond, ce qui reste, le rythme
+de dépense des 30 dernières minutes et le temps que tient le reste à ce rythme. Le budget est celui de toute la
+salle, pas celui de chacun.
+
+**H5. Le chef décide avec les paliers.** À 25, 50, 75 et 90 % du plafond, le lanceur écrit au chef ce qui a été
+dépensé et à quel rythme. C'est à lui de dire ce qui passe en priorité et ce qu'on abandonne, et de le dire à ceux
+que ça change.
+
+**H6. La préparation ne mange pas tout.** Si un quart du plafond est dépensé sans plan validé, le lanceur clôt la
+préparation : on ne brûle pas le budget à discuter.
+
+**H7. Garder de quoi finir.** Au-delà de 90 % du plafond, le lanceur ne réveille plus les constructeurs inoccupés et
+ne tente plus de dernière chance : ce qui reste sert à terminer et à constater, pas à ouvrir du travail.
+
+**H8. Mettre l'intelligence là où elle compte.** Chaque siège peut avoir son modèle (`--modele-role`) : un modèle
+fort, ou un abonnement, pour ceux qui décident et contrôlent (chef, gardien), un modèle bon marché pour ceux qui
+construisent. Le niveau de réflexion (`reflexion` dans `modeles.yaml`, ou `--reflexion`) se règle aussi : `medium`
+par défaut, plus haut quand la qualité du raisonnement vaut son coût.
+
+**H9. Comparer pour décider.** Le bilan d'un run donne la dépense, les tokens et les appels, par modèle quand il y en
+a deux. Deux runs sur la même mission, avec des réglages différents, disent ce que chaque dollar a acheté.

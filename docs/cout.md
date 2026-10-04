@@ -27,7 +27,7 @@ En haut à droite de chaque écran, la dépense du run et sa jauge. Un clic sur 
    vérification de la mission (0).
 
 Le détail par agent, avec le coût et les tokens de chaque réponse du modèle, est dans l'écran
-[Agents](fiches-agents.md).
+[Agents](fiches-agents.md). Comment la salle raisonne avec ce budget : [penser au budget](regles.md#h-penser-au-budget).
 
 > Dans ce run d'exemple, les montants sont fictifs mais réalistes : c'est l'ordre de grandeur d'un run de neuf
 > agents sur un modèle bon marché.

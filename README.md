@@ -40,7 +40,9 @@ Tous les agents sont dans une même salle virtuelle :
   n'écrit dans un fichier qui porte la pancarte d'un collègue.
 - **Les tickets** : chaque tâche, bug ou question a un ticket et un responsable.
 - **Le bureau privé** : le coin de chaque agent. Le gardien y garde ses cas de test secrets.
-- **Le budget commun** : quand il est épuisé, tout le monde s'arrête.
+- **Le budget commun** : quand il est épuisé, tout le monde s'arrête. La salle raisonne avec lui tout le run :
+  le coût fait partie du résultat, chaque lecture se paie, le chef reçoit les paliers de dépense et décide des
+  priorités ([penser au budget](docs/regles.md#h-penser-au-budget)).
 - **La veille** : un agent sans travail s'endort et ne coûte plus rien ; il se réveille quand un collègue
   lui écrit. Quand tout le monde dort, le run est terminé.
 - **Les prénoms** : chaque agent porte un prénom du calendrier, attribué par le lanceur dans l'ordre (Antoine,
