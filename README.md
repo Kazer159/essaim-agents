@@ -311,6 +311,7 @@ client n'attend plus de dix minutes**. Voici comment elle est construite, sectio
 | `## Le monde` | `rythme.csv` : temps de cuisson, gestes, arrivées. L'application le lit sans le changer, et le juge le remplace par le sien | 6 |
 | `## Personne n'attend` | ce que veut dire « attendre », ce qui ne compte pas comme une attente évitée (renvoyer un client, presser une table), et comment chaque attente se mesure | 1, 3 |
 | `## La soirée` | 220 couverts tirés au hasard pendant qu'elle se joue, les problèmes d'un vrai service, le juge qui peut reprendre la main, et **des boutons pour faire arriver un client, un groupe ou plusieurs clients d'un coup** | 1 |
+| `## Les tables et les places` | trente tables de 2 à 8 places pour des groupes de 1 à 8 : la façon de bien placer les clients **n'est pas écrite**, c'est à la salle de la trouver, de la mesurer et de la défendre | 1, 3 |
 | `## Les huit pages` | les adresses des pages et la règle des fenêtres d'accord en moins d'une seconde | 3 |
 | `## Le parcours d'un client` | de l'arrivée au débarrassage, sans rien ressaisir | 3 |
 | `## Les règles du restaurant` | les calculs exacts : réservation, rupture, TVA par taux, parts égales au centime près | 3 |
@@ -331,6 +332,9 @@ Ce qui la rend bonne :
   peut pas : la cuisson vient de `rythme.csv`, que le juge remplace par le sien.
 - **Le juge est annoncé.** Les agents savent d'avance comment ils seront jugés : ils construisent pour ces
   gestes-là, et la recette peut les rejouer avant lui.
+- **Elle laisse un vrai problème à résoudre.** Un couple à une table de 6, c'est quatre couverts perdus pour un
+  repas entier. La mission décrit les tables et les groupes, mesure le gâchis, mais ne dit pas comment placer :
+  la salle doit chercher, comparer plusieurs façons sur des soirées, et défendre la sienne chiffres à l'appui.
 - **On peut la mettre à l'épreuve.** L'application livrée a des boutons qui font arriver, à l'instant choisi, un
   client, un groupe ou une vague de clients, ou qui font sonner le téléphone pour une réservation. Au plus fort de
   la soirée, on appuie, et on regarde comment le restaurant s'en sort : une table trouvée ou une liste d'attente,

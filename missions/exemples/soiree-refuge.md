@@ -78,6 +78,32 @@ Le juge veut voir vivre un service du soir complet, des premiers appels de l'apr
   restaurant s'en sort : une table trouvée, une liste d'attente, une cuisine qui suit ou qui déborde, et ce que
   ça change aux attentes de tous.
 
+## Les tables et les places
+
+Le Refuge a **trente tables, et pas une de trop** : onze tables de 2, quatorze de 4, quatre de 6 et une de 8,
+réparties entre la salle, la terrasse et la mezzanine (`tables.csv`), soit cent dix places. Les clients, eux,
+arrivent en groupes de toutes tailles (`rythme.csv`) : surtout à deux (45 %) et à quatre (25 %), mais aussi seuls,
+à trois, à cinq, à six, et parfois à sept ou huit.
+
+Chaque place perdue est un couvert perdu. Une table de 6 donnée à un couple laisse quatre places vides pendant tout
+un repas ; un groupe de 3 occupe toujours une table de 4 ; un groupe de 7 ne tient qu'à la table de 8, ou à des
+tables réunies.
+
+**La façon de bien gérer les places est à trouver.** Elle n'est pas écrite ici : c'est à la salle de la chercher,
+de la mesurer sur des soirées tirées au hasard, et de l'appliquer. Quelques pistes qu'un vrai restaurant
+envisagerait, sans obligation de les retenir : à quelle table placer chaque groupe, garder ou non les grandes
+tables pour les grands groupes, réunir des tables voisines de la même zone et les séparer ensuite, faire patienter
+un groupe quelques minutes plutôt que de gâcher une grande table, l'ordre de la liste d'attente.
+
+- **Le placement des clients sans réservation est libre** ; celui des réservations suit la règle du restaurant
+  (plus bas).
+- **Le gâchis se mesure et se voit**, en direct et à la fin : les places vides à des tables occupées, le taux
+  d'occupation des places par zone et sur la soirée, les groupes renvoyés ou mis en attente alors que des places
+  existaient.
+- **Le choix se défend** : `SOLUTIONS.md` dit la façon de placer retenue, celles qui ont été essayées et
+  écartées, ce que chacune a donné sur des soirées mesurées (couverts servis, attentes, places perdues), et
+  pourquoi la salle a tranché ainsi.
+
 ## Les huit pages
 
 Chacune s'ouvre à son adresse, dans sa propre fenêtre ; ce qui change dans une fenêtre apparaît dans les autres
@@ -131,6 +157,8 @@ s'annulent, et une application qui reste rapide avec trente tables pleines et ce
 - mesurer les attentes sur au moins dix soirées tirées au hasard, avec sa propre horloge, et les recalculer
   depuis ce qu'il voit ;
 - arrêter la soirée à un instant pris au hasard et fouiller ce que l'application garde : aucune arrivée future ;
+- compter les places vides à des tables occupées, et chercher chaque groupe renvoyé ou mis en attente alors
+  qu'une table, ou des tables réunies, auraient pu l'accueillir ;
 - au plus fort de la soirée, faire arriver d'un bouton un client, puis un groupe, puis une vague de clients, et
   suivre chacun jusqu'à son départ : personne n'attend plus de dix minutes, ou l'application dit pourquoi ;
 - suivre trois clients d'un bout à l'autre, dans trois fenêtres à la fois (tablette 1024 × 768, ordinateur
@@ -139,8 +167,8 @@ s'annulent, et une application qui reste rapide avec trente tables pleines et ce
 
 ## Les documents
 
-- `SOLUTIONS.md` : chaque cause d'attente trouvée, chaque solution appliquée ou écartée avec sa raison, ce qu'elle
-  a changé mesuré sur des soirées, et ce qu'elle coûte ;
+- `SOLUTIONS.md` : chaque cause d'attente trouvée, la façon de placer les clients aux tables, chaque solution
+  appliquée ou écartée avec sa raison, ce qu'elle a changé mesuré sur des soirées, et ce qu'elle coûte ;
 - `DECISIONS.md` : les choix, qui les a proposés, qui s'y est opposé, comment la salle a tranché, avec les numéros
   des messages du fil ;
 - `MODE-D-EMPLOI.md` : pour un serveur, un cuisinier et le patron, où est chaque chose et comment faire chaque
@@ -157,7 +185,8 @@ application
 ## C'est fini quand
 
 Sur toutes les soirées tirées au hasard, dans le monde de `rythme.csv` et dans celui du juge, aucun client n'attend
-plus de dix minutes à aucune étape, et chaque attente se mesure et se voit ; les huit pages s'ouvrent à leur
+plus de dix minutes à aucune étape, et chaque attente se mesure et se voit ; les places perdues se mesurent et
+se voient, et la façon de placer retenue est défendue, chiffres à l'appui, dans `SOLUTIONS.md` ; les huit pages s'ouvrent à leur
 adresse sans erreur ni exception ; trois fenêtres ouvertes restent d'accord en moins d'une seconde ; à la fin de
 chaque soirée, les chiffres du tableau de bord, des stocks et de l'archive se recalculent à la main ; les boutons
 font arriver un client, un groupe ou plusieurs clients, et chacun est suivi jusqu'à son départ ; `bun test`
