@@ -1,0 +1,8 @@
+{"type":"faux:attendre","chemin":"{PARTAGE}/lent.js"}
+{"type":"tool_execution_start","toolCallId":"b1","toolName":"bash","args":{"command":"echo a > a.js"}}
+{"type":"faux:toucher","chemin":"{PARTAGE}/a.js"}
+{"type":"tool_execution_end","toolCallId":"b1","toolName":"bash","result":{"content":[{"type":"text","text":""}]},"isError":false}
+{"type":"faux:dormir","ms":300}
+{"type":"faux:toucher","chemin":"{RUN}/barriere"}
+{"type":"tool_execution_start","toolCallId":"f1","toolName":"moi_finir","args":{"raison":"bash fait"}}
+{"type":"agent_end"}

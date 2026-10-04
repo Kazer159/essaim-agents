@@ -1,0 +1,4 @@
+.feuille td { border: 1px solid; }
+.feuille td.selected { outline: 2px solid blue; }
+.feuille td.erreur { color: red; }
+@media (max-width: 600px) { .feuille { font-size: 12px; } }

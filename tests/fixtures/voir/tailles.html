@@ -1,0 +1,9 @@
+<!doctype html><title>Tailles</title>
+<style>
+  .bandeau { width: 1600px; background: #cde; } /* + 8 px de marge du body : 1608 */
+  .etiquette { width: 60px; overflow: hidden; white-space: nowrap; }
+  .lecteur { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+<div class="bandeau">un bandeau de 1600 px</div>
+<p class="etiquette">un texte bien trop long pour sa boîte</p>
+<span class="lecteur">texte pour lecteur d'écran, masqué exprès</span>

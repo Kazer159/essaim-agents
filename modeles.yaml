@@ -1,0 +1,48 @@
+# Alias de modèles de l'essaim : alias → id complet pour pi, réflexion par
+# défaut, et tarif manuel facultatif ($ par million de tokens) quand le
+# catalogue de pi (~/.pi/agent/models-store.json) ne le connaît pas ou le
+# donne à zéro. Un tarif inconnu ou nul sans tarif manuel est refusé.
+# `abonnement: true` : le tarif manuel prime alors sur le prix que pi calcule au tarif public ; c'est lui que compte le plafond.
+# Exige le backend Vertex épinglé via ~/.pi/agent/models.json (signatures de pensée propres au backend : OpenRouter alterne Vertex et AI Studio, d'où le refus « reasoning details »). Sans cet épinglage, une requête au plus.
+gemini-flash:
+  id: openrouter/google/gemini-3.8-flash
+  reflexion: medium
+deepseek-flash:
+  id: openrouter/deepseek/deepseek-v4-flash
+  reflexion: medium
+# La 4.1 accepte les images (`input: ["text","image"]` dans le catalogue de pi, qui sait déjà les
+# redimensionner), et son cache est six fois moins cher. La 4 ne voit pas les images.
+# Sa qualité de code reste à mesurer : sonde avant tout run complet.
+deepseek-flash-41:
+  id: openrouter/deepseek/deepseek-v4.1-flash
+  reflexion: medium
+# GLM 5.3 Flash (Z.ai) : voit les images, 0,045 $/M en entrée, 0,14 $/M en sortie, contexte 1 M.
+glm-flash-53:
+  id: openrouter/z-ai/glm-5.3-flash
+  reflexion: medium
+# MiMo 2.6 Flash (Xiaomi) : voit les images comme la 4.1, cache au même prix (0,0028 $/M), sortie 0,28 $/M.
+mimo-flash:
+  id: openrouter/xiaomi/mimo-v2.6-flash
+  reflexion: medium
+# GPT-6 Sol par un abonnement ChatGPT (fournisseur openai-codex de pi, pas OpenRouter), pour les sièges
+# uniques (chef, intégrateur, recette, gardien). Voit les images, contexte 272 k. Tarif manuel à 0 :
+# l'abonnement paie, le plafond ne compte que ce qui passe par OpenRouter. Le quota du forfait n'est pas suivi par l'essaim.
+sol-codex:
+  id: openai-codex/gpt-6-sol
+  reflexion: medium
+  tarif: { entree: 0, sortie: 0 }
+  abonnement: true
+# Space Bunny Alpha (modèle « stealth » anonyme, gratuit sur OpenRouter) : voit les images, appelle les outils, contexte 1 M.
+# Prix réel 0, donc tarif manuel à 0 et plafond sans effet : ni paliers ni réserve de budget.
+space-bunny:
+  id: openrouter/stealth/space-bunny-alpha
+  reflexion: medium
+  tarif: { entree: 0, sortie: 0 }
+faux:
+  id: faux/faux
+  reflexion: off
+  tarif: { entree: 0, sortie: 0 }      # le faux pi ne coûte rien ; tarif manuel explicite, donc accepté
+faux-bis:                              # tests seulement : le second modèle d'un run mixte, avec un tarif non nul
+  id: faux/faux-bis                    # pour que le compteur l'applique quand la fixture ne donne pas de coût
+  reflexion: low
+  tarif: { entree: 2, sortie: 10 }

@@ -1,0 +1,4 @@
+.grille { border-collapse: collapse; }
+.grille td.selected { outline: 2px solid blue; }
+#grid { min-height: 10px; }
+td:hover { background: #eee; }

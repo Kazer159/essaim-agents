@@ -1,0 +1,8 @@
+ligne,pk_debut,pk_fin,nature,nom
+principale,7.1,7.5,viaduc,viaduc des Martinets
+principale,11.9,13.2,tunnel,tunnel du Rocaillon
+principale,16.4,16.9,viaduc,viaduc de la Vausse
+principale,26.0,28.1,tunnel,tunnel hélicoïdal des Genêts
+principale,31.2,31.5,viaduc,viaduc du Sureau
+principale,38.3,40.0,tunnel,tunnel du Sorbier
+branche,2.0,2.8,tunnel,tunnel de la Lèze

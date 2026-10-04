@@ -1,0 +1,3 @@
+{"type":"compaction_end","reason":"threshold","result":{"summary":"résumé du contexte","usage":{"input":30000,"output":900,"cacheRead":0,"cacheWrite":0,"totalTokens":30900,"cost":{"input":0.0015,"output":0.0005,"cacheRead":0,"cacheWrite":0,"total":0.002}}},"aborted":false,"willRetry":false}
+{"type":"message_end","message":{"role":"assistant","content":[{"type":"text","text":"Je continue."}],"api":"openai-completions","provider":"openrouter","model":"google/gemini-3.8-flash","usage":{"input":900,"output":60,"cacheRead":0,"cacheWrite":0,"totalTokens":960,"cost":{"input":0.0007,"output":0.0003,"cacheRead":0,"cacheWrite":0,"total":0.001}},"stopReason":"stop","timestamp":1789994513296}}
+{"type":"agent_end"}

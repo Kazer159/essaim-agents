@@ -1,0 +1,8 @@
+id;nom;capacite;x;y;ouverture;fermeture
+GRA;Grande Scène;30000;420;180;16:00;00:30
+CLA;La Clairière;8000;150;320;15:00;00:00
+CHA;Le Chapiteau;5000;620;380;17:00;03:00
+DOC;Les Docks;4000;700;90;20:00;04:00
+SER;La Serre;1200;260;520;14:30;23:00
+KIO;Le Kiosque;600;480;440;14:00;22:00
+ENT;Entrée;0;60;60;;

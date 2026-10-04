@@ -1,0 +1,21 @@
+code,nom,categorie,prix_ttc_cts,tva_pct,poste
+E1,Velouté de potimarron,entree,850,10,chaud
+E2,Œuf parfait aux champignons,entree,1050,10,chaud
+E3,Tartare de truite,entree,1200,10,froid
+E4,Salade de chèvre chaud,entree,950,10,chaud
+P1,Bœuf bourguignon,plat,2200,10,chaud
+P2,Filet de truite au beurre blanc,plat,2100,10,chaud
+P3,Risotto aux cèpes,plat,1900,10,chaud
+P4,Burger du Sarrat,plat,1800,10,chaud
+P5,Plat du jour,plat,1650,10,chaud
+D1,Tarte aux myrtilles,dessert,800,10,froid
+D2,Moelleux au chocolat,dessert,900,10,dessert
+D3,Crème brûlée,dessert,750,10,dessert
+D4,Assiette de fromages,dessert,1000,10,froid
+B1,Eau minérale 50 cl,boisson,450,10,bar
+B2,Limonade artisanale,boisson,500,10,bar
+B3,Café,boisson,250,10,bar
+B4,Verre de vin rouge,boisson,650,20,bar
+B5,Verre de vin blanc,boisson,650,20,bar
+B6,Bière pression 25 cl,boisson,500,20,bar
+B7,Génépi,boisson,700,20,bar

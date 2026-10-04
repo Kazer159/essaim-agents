@@ -1,0 +1,2 @@
+{"type":"tool_execution_start","toolCallId":"call_b1","toolName":"salle_poster","args":{"texte":"Antoine, le bouton Annuler ne restaure rien"}}
+{"type":"tool_execution_start","toolCallId":"call_b2","toolName":"moi_finir","args":{"raison":"appel passé"}}

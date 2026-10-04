@@ -1,0 +1,6 @@
+code;nom;prix;unite
+PDJ;Petit-déjeuner;14.50;personne_nuit
+PARK;Parking;12.00;nuit
+SPA;Accès spa;35.00;sejour
+ANIM;Animal de compagnie;18.00;nuit
+LATE;Départ tardif;25.00;sejour

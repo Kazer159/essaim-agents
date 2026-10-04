@@ -1,0 +1,21 @@
+{
+  "name": "essaim",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "ESSAIM_TEST=1 bun test ./tests/ --parallel"
+  },
+  "pi": {
+    "extensions": [
+      "./src/outils-essaim.ts"
+    ]
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "0.85.1",
+    "@types/bun": "latest",
+    "playwright-core": "1.63.0",
+    "typebox": "*"
+  }
+}

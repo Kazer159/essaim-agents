@@ -1,0 +1,5 @@
+{"type":"tool_execution_start","toolCallId":"w1","toolName":"write","args":{"path":"../../partage/lent.js","content":"écrit par {AGENT}\n"}}
+{"type":"faux:attendre","chemin":"{RUN}/barriere"}
+{"type":"tool_execution_end","toolCallId":"w1","toolName":"write","result":{"content":[{"type":"text","text":"ok"}]},"isError":false}
+{"type":"tool_execution_start","toolCallId":"f1","toolName":"moi_finir","args":{"raison":"écrit"}}
+{"type":"agent_end"}

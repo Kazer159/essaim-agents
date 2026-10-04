@@ -1,0 +1,28 @@
+code,nom,unite,stock_depart,seuil_alerte,stock_cible,fournisseur,prix_achat_cts_par_unite
+potimarron,Potimarron,g,20000,5000,30000,Primeurs Lauze,0.4
+creme,Crème fraîche,cl,1500,400,2500,Laiterie du Col,1.2
+oeuf,Œuf,piece,300,100,450,Laiterie du Col,30
+champignon,Champignons de Paris,g,12500,3000,20000,Primeurs Lauze,0.9
+truite,Truite,g,25000,7500,35000,Pisciculture Varre,2.2
+chevre,Crottin de chèvre,piece,100,30,150,Laiterie du Col,120
+salade,Salade,g,7500,2000,12500,Primeurs Lauze,0.8
+boeuf,Bœuf à braiser,g,35000,10000,45000,Boucherie Plaine,1.8
+vin_cuisine,Vin de cuisine,cl,2000,500,3000,Cave Sarrat,0.5
+riz,Riz arborio,g,15000,4000,20000,Épicerie Vélane,0.4
+cepes,Cèpes,g,6000,1500,10000,Primeurs Lauze,4.5
+pain_burger,Pain à burger,piece,120,40,200,Boulangerie Vélane,45
+steak,Steak haché,piece,120,40,200,Boucherie Plaine,160
+plat_jour,Portion plat du jour,piece,150,25,150,Cuisine,0
+pate,Pâte sablée,g,10000,2500,15000,Épicerie Vélane,0.6
+myrtille,Myrtilles,g,7500,2000,12500,Primeurs Lauze,1.5
+chocolat,Chocolat noir,g,7500,2000,10000,Épicerie Vélane,1.4
+beurre,Beurre,g,12500,3000,17500,Laiterie du Col,1.1
+sucre,Sucre,g,15000,2500,20000,Épicerie Vélane,0.2
+fromage,Plateau de fromages,portion,90,25,125,Laiterie du Col,300
+eau,Eau minérale 50 cl,bouteille,240,60,360,Cave Sarrat,60
+limonade,Limonade,bouteille,180,50,240,Cave Sarrat,90
+cafe,Café en grains,g,5000,1250,7500,Épicerie Vélane,3
+vin_rouge,Vin rouge,cl,7500,1500,11250,Cave Sarrat,1.1
+vin_blanc,Vin blanc,cl,7500,1500,11250,Cave Sarrat,1.1
+biere,Bière pression,cl,15000,2500,25000,Cave Sarrat,0.4
+genepi,Génépi,cl,1500,350,2500,Cave Sarrat,4

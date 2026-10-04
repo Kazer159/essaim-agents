@@ -1,0 +1,5 @@
+{"type":"faux:dormir","ms":3000}
+{"type":"tool_execution_start","toolCallId":"call_1","toolName":"page_voir","args":{"page":"saine.html"}}
+{"type":"tool_execution_start","toolCallId":"call_2","toolName":"moi_finir","args":{"raison":"page vue","fichier":"saine.html"}}
+{"type":"message_end","message":{"role":"assistant","content":[{"type":"text","text":"Vu."}],"api":"openai-completions","provider":"openrouter","model":"faux/faux","usage":{"input":100,"output":10,"cacheRead":0,"cacheWrite":0,"totalTokens":110,"cost":{"input":0.0001,"output":0.0001,"cacheRead":0,"cacheWrite":0,"total":0.0002}},"stopReason":"stop","timestamp":1789994513296}}
+{"type":"agent_end"}

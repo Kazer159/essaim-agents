@@ -1,0 +1,115 @@
+{
+  "regles": [
+    "Chaque situation décrit un contexte, des faits seulement (où est l'agent, ce qu'il vient de lire, ce qu'on lui a écrit) ; jamais ce qu'il doit faire (D4). Elle ne nomme aucun outil : le même texte vaut pour les deux listes.",
+    "Le texte envoyé au modèle est le préambule, puis le contexte de la situation. Les consignes de la salle du catalogue sont ajoutées au prompt système, comme dans un run.",
+    "Un seul appel au fournisseur par situation et par catalogue. On relève les appels d'outil de la première réponse de l'assistant.",
+    "Une réponse sans appel d'outil compte « sans appel » : c'est un échec.",
+    "Une réponse à plusieurs appels : seul le premier compte, et le rapport le dit (colonne « plusieurs appels »).",
+    "Bon outil du premier coup : le premier appel correspond à l'attendu du catalogue, ou à une de ses équivalences. Un attendu donne l'outil ; args (facultatif) : chaque clé doit valoir cette valeur (texte comparé sans casse ni espaces autour ; « * » : présente et non vide) ; motif (facultatif) : une expression régulière qui doit trouver les arguments écrits en JSON. Une équivalence s'écrit « outil » ou « outil ~ motif ».",
+    "Paramètres valides : les arguments du premier appel passent validateToolArguments de pi-ai contre le schéma de cet outil dans le catalogue. Nom inconnu : le premier appel nomme un outil qui n'est ni de pi ni du catalogue.",
+    "Seuil de repli, fixé avant tout lancement : la nouvelle liste doit faire au moins aussi bien que l'ancienne en « bon outil du premier coup ». Sinon le rapport conclut « repli O4 (anciens noms, autres leviers seuls) à trancher avec l'utilisateur »."
+  ],
+  "preambule": "La salle construit une simulation de chute de neige : le livrable est index.html dans le dossier partagé, avec simu.js, vent.js, rendu.js, compteur.js et tests/simu.test.ts (140 tests). Le dossier partagé est un dépôt git que la salle commite ; aucun agent n'y fait de commit lui-même. Dans la salle : Anne, Bernard, Chloé, Denis et toi, parmi dix.",
+  "situations": [
+    {
+      "id": "repondre-principal-depuis-un-fil",
+      "contexte": "Tu es dans le fil q-neige avec Bernard. Chloé vient d'écrire dans principal : « Qui sait où en est la gravité ? Je cale le vent dessus. » La gravité est finie : c'est toi qui l'as écrite, dans simu.js (fonction tomber), et la salle l'a commitée il y a dix minutes.",
+      "attendu": { "avant": { "outil": "poster", "args": { "fil": "principal" } }, "apres": { "outil": "salle_poster", "args": { "fil": "principal" } } }
+    },
+    {
+      "id": "qui-a-change-simu",
+      "contexte": "Chloé dans principal : « Depuis tout à l'heure, les flocons remontent. Quelqu'un sait qui a touché simu.js en dernier, et quand ? » Tu n'as pas touché simu.js depuis une heure.",
+      "attendu": { "avant": { "outil": "bash", "motif": "git[^\"]*log" }, "apres": { "outil": "depot_journal" } }
+    },
+    {
+      "id": "tests-seulement-les-echecs",
+      "contexte": "Tu viens de modifier simu.js. La dernière fois que la salle a lancé tests/simu.test.ts, la sortie faisait 600 lignes. Bernard dans principal : « Combien de tests sont rouges maintenant, et lesquels ? »",
+      "attendu": { "avant": { "outil": "tester" }, "apres": { "outil": "code_tester" } }
+    },
+    {
+      "id": "fermer-ticket-9",
+      "contexte": "Le ticket 9 (bug : les flocons traversent le sol) t'est confié. Ta correction est commitée par la salle dans le dossier commun : commit abc1234. Le ticket 9 est encore ouvert.",
+      "attendu": { "avant": { "outil": "ticket", "args": { "id": 9, "etat": "ferme", "commit": "abc1234" } }, "apres": { "outil": "ticket_modifier", "args": { "id": 9, "etat": "ferme", "commit": "abc1234" } } }
+    },
+    {
+      "id": "page-menu-telephone",
+      "contexte": "Anne dans principal : « Sur téléphone, en 390x844, une fois le menu ouvert (le bouton #menu), il cache le canevas chez moi. Quelqu'un le voit aussi ? » Tu n'as pas regardé la page sur téléphone.",
+      "attendu": { "avant": { "outil": "voir", "args": { "clics": "*", "tailles": "*" } }, "apres": { "outil": "page_voir", "args": { "clics": "*", "tailles": "*" } } }
+    },
+    {
+      "id": "relire-tout-le-fil",
+      "contexte": "Ton contexte vient d'être résumé. Avant le résumé, tu étais dans le fil q-neige : quarante messages sur la forme des flocons, dont tu n'as plus le détail. Tu es toujours dans q-neige ; ces messages, tu les avais déjà lus.",
+      "attendu": { "avant": { "outil": "boite", "args": { "complet": true } }, "apres": { "outil": "fil_historique" } }
+    },
+    {
+      "id": "lire-le-nouveau",
+      "contexte": "Tu viens de finir d'écrire vent.js, 80 lignes. Cela t'a pris douze minutes, pendant lesquelles tu n'as rien lu de la salle.",
+      "attendu": { "avant": { "outil": "boite", "motif": "^(?!.*\"complet\":true)" }, "apres": { "outil": "salle_lire" } }
+    },
+    {
+      "id": "ticket-bug-pour-bernard",
+      "contexte": "En regardant la page, tu as vu que le compteur de flocons affiche NaN après une remise à zéro. compteur.js est de Bernard, qui s'en occupe. Personne n'en a parlé dans la salle et aucun ticket ne le mentionne.",
+      "attendu": { "avant": { "outil": "ticket", "args": { "type": "bug", "charge": "Bernard" }, "motif": "^(?!.*\"id\")" }, "apres": { "outil": "ticket_ouvrir", "args": { "type": "bug", "charge": "Bernard" } } }
+    },
+    {
+      "id": "tickets-ouverts",
+      "contexte": "Ta part est commitée. Denis dans principal : « Combien de tickets restent ouverts, et qui les porte ? Je fais le point pour la fin. »",
+      "attendu": { "avant": { "outil": "tickets", "motif": "^(?!.*\"id\")" }, "apres": { "outil": "ticket_lister" } }
+    },
+    {
+      "id": "reste-du-budget",
+      "contexte": "Chloé dans principal : « On a déjà beaucoup dépensé. Il reste de quoi faire les sons ? »",
+      "attendu": { "avant": { "outil": "budget" }, "apres": { "outil": "salle_budget" } }
+    },
+    {
+      "id": "index-version-d-avant",
+      "contexte": "Depuis ta dernière modification de index.html, commitée par la salle (commit 7f3e2d1), la page reste blanche. Au commit d'avant, e41b9c0, la page était saine. Personne n'a de pancarte sur index.html.",
+      "attendu": { "avant": { "outil": "restaurer", "args": { "commit": "e41b9c0" }, "motif": "index\\.html" }, "apres": { "outil": "depot_restaurer", "args": { "commit": "e41b9c0" }, "motif": "index\\.html" } }
+    },
+    {
+      "id": "veille-reveil-par-le-fil",
+      "contexte": "Tu es dans le fil q-son avec Anne. Tu y as posé ta question : « le son coupe-t-il quand la neige s'arrête ? ». Anne travaille à autre chose et répondra plus tard. Ta part est commitée et aucun ticket ne t'est confié.",
+      "attendu": { "avant": { "outil": "dormir", "args": { "reveil_fil": true } }, "apres": { "outil": "moi_dormir", "args": { "reveil_fil": true } } }
+    },
+    {
+      "id": "partir-mission-faite",
+      "contexte": "index.html est complet : la page s'ouvre sans erreur, les 140 tests passent, et tout ce que la mission demande y est. Aucun ticket n'est ouvert. Tu n'es dans aucun fil. Dans principal, les neuf autres ont écrit qu'il ne reste rien.",
+      "attendu": { "avant": { "outil": "fini" }, "apres": { "outil": "moi_finir" } }
+    },
+    {
+      "id": "entrer-dans-un-fil",
+      "contexte": "Dans principal, dix agents parlent en même temps de sons, de couleurs et de vent. Bernard et toi échangez sur la forme des flocons depuis trois messages ; il vient d'écrire : « On continue ça à part, dans q-flocons ? » q-flocons n'existe pas encore.",
+      "attendu": { "avant": { "outil": "entrer", "args": { "fil": "q-flocons" } }, "apres": { "outil": "fil_entrer", "args": { "fil": "q-flocons" } } }
+    },
+    {
+      "id": "sortir-avec-une-conclusion",
+      "contexte": "Tu es dans le fil q-flocons. Bernard et toi êtes tombés d'accord : six branches, une taille tirée entre 2 et 6 px. Bernard a écrit « C'est réglé pour moi » et a quitté le fil : tu y es le dernier présent.",
+      "attendu": { "avant": { "outil": "quitter", "args": { "conclusion": "*" } }, "apres": { "outil": "fil_quitter", "args": { "conclusion": "*" } } }
+    },
+    {
+      "id": "pancarte-sur-rendu",
+      "contexte": "Anne dans principal : « Claude, tu prends la réécriture de dessiner, dans rendu.js ? » Tu as répondu oui. Chloé a écrit plus tôt qu'elle touchait aussi au rendu. Personne n'a de pancarte sur rendu.js.",
+      "attendu": { "avant": { "outil": "reclamer_fichier", "motif": "rendu\\.js" }, "apres": { "outil": "fichier_reclamer", "motif": "rendu\\.js" } }
+    },
+    {
+      "id": "carte-du-code",
+      "contexte": "Tu arrives sur un dossier partagé de 34 fichiers .js écrits par d'autres, dont tu n'as lu aucun. Bernard : « Claude, pourquoi le vent ne s'applique-t-il pas aux flocons ? Je ne trouve pas où il est branché. »",
+      "attendu": { "avant": { "outil": "plan_du_code" }, "apres": { "outil": "code_carte" } }
+    },
+    {
+      "id": "essai-a-cote",
+      "contexte": "Anne dans principal : « Réécrire simu.js avec un quadtree, c'est risqué : le mieux serait de l'essayer à côté, sans casser ce qui marche. Claude, tu t'en charges ? » Tu as répondu oui.",
+      "attendu": { "avant": { "outil": "essai", "args": { "nom": "*" } }, "apres": { "outil": "depot_essai", "args": { "nom": "*" } } }
+    },
+    {
+      "id": "images-par-seconde",
+      "contexte": "Chloé dans principal : « La page rame chez moi. Elle fait combien d'images par seconde ? » Personne n'a de chiffre.",
+      "attendu": { "avant": { "outil": "mesurer" }, "apres": { "outil": "page_mesurer" } }
+    },
+    {
+      "id": "page-de-reference",
+      "contexte": "La mission cite https://example.org/flocons comme référence pour les formes de flocons. Tu ne l'as pas lue ; les autres non plus.",
+      "attendu": { "avant": { "outil": "lire_web", "motif": "example\\.org/flocons" }, "apres": { "outil": "web_lire", "motif": "example\\.org/flocons" } }
+    }
+  ]
+}

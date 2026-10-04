@@ -1,0 +1,11 @@
+regle,valeur,precision,unite
+periode_debut,2026-11-02,,premier jour du planning
+periode_jours,28,,jours
+repos_entre_postes_min,11,,heures entre la fin d'un poste et le début du suivant
+repos_hebdomadaire_min,36,,heures consécutives de repos dans chaque semaine civile
+nuits_consecutives_max,3,,nuits de suite
+jours_travailles_consecutifs_max,6,,jours de suite
+heures_semaine_max,48,,heures dans une semaine civile
+heures_contrat_semaine,35,,"heures par semaine à 100 %, au prorata du contrat"
+ecart_heures_periode_max,7.5,,"écart toléré sur la période entre heures planifiées et heures dues, en plus ou en moins"
+weekends_repos_min,2,,"week-ends entièrement libres sur la période, pour chacun"

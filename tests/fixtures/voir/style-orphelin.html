@@ -1,0 +1,13 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Orphelin</title>
+<link rel="stylesheet" href="orphelin.css">
+<style>.actif { color: green; } .grille td { border: 1px solid; }</style>
+</head><body>
+<div id="grid"></div>
+<script>
+  // Le JS crée la table sous un autre nom que la feuille de style : une couture cassée.
+  const t = document.createElement("table"); t.id = "feuille"; t.innerHTML = "<tr><td>1</td></tr>";
+  document.getElementById("grid").appendChild(t);
+  t.querySelector("td").classList.add("actif");
+</script>
+</body></html>

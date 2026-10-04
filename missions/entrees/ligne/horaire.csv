@@ -1,0 +1,57 @@
+numero,type,depart,terminus,heure,jours,saison,arrets
+101,O,VP,CS,06:00,S,toute,toutes
+102,O,CS,VP,06:05,S,toute,toutes
+103,O,VP,CS,08:00,S,toute,toutes
+104,O,CS,VP,08:05,S,toute,toutes
+105,O,VP,CS,10:00,S,toute,toutes
+106,O,CS,VP,10:05,S,toute,toutes
+107,O,VP,CS,12:00,S,toute,toutes
+108,O,CS,VP,12:05,S,toute,toutes
+109,O,VP,CS,14:00,S,toute,toutes
+110,O,CS,VP,14:05,S,toute,toutes
+111,O,VP,CS,16:00,S,toute,toutes
+112,O,CS,VP,16:05,S,toute,toutes
+113,O,VP,CS,18:00,S,toute,toutes
+114,O,CS,VP,18:05,S,toute,toutes
+115,O,VP,CS,20:00,S,toute,toutes
+116,O,CS,VP,20:05,S,toute,toutes
+201,E,VP,CS,07:10,S,toute,SA PV OH PS
+202,E,CS,VP,07:40,S,toute,PS OH PV SA
+203,E,VP,CS,12:40,S,toute,SA PV OH PS
+204,E,CS,VP,13:10,S,toute,PS OH PV SA
+205,E,VP,CS,17:20,S,toute,SA PV OH PS
+206,E,CS,VP,17:50,S,toute,PS OH PV SA
+301,M,CL,VP,09:20,S,toute,
+302,M,VP,CL,05:40,S,toute,
+303,M,CL,VP,15:20,S,toute,
+304,M,VP,CL,11:30,S,toute,
+131,O,VP,CS,08:00,A,toute,toutes
+132,O,CS,VP,08:05,A,toute,toutes
+133,O,VP,CS,10:00,A,toute,toutes
+134,O,CS,VP,10:05,A,toute,toutes
+135,O,VP,CS,12:00,A,toute,toutes
+136,O,CS,VP,12:05,A,toute,toutes
+137,O,VP,CS,14:00,A,toute,toutes
+138,O,CS,VP,14:05,A,toute,toutes
+139,O,VP,CS,16:00,A,toute,toutes
+140,O,CS,VP,16:05,A,toute,toutes
+141,O,VP,CS,18:00,A,toute,toutes
+142,O,CS,VP,18:05,A,toute,toutes
+231,E,VP,CS,09:10,A,toute,SA PV OH PS
+232,E,CS,VP,16:40,A,toute,PS OH PV SA
+151,O,VP,CS,09:00,D,toute,toutes
+152,O,CS,VP,09:05,D,toute,toutes
+153,O,VP,CS,12:00,D,toute,toutes
+154,O,CS,VP,12:05,D,toute,toutes
+155,O,VP,CS,15:00,D,toute,toutes
+156,O,CS,VP,15:05,D,toute,toutes
+157,O,VP,CS,18:00,D,toute,toutes
+158,O,CS,VP,18:05,D,toute,toutes
+251,E,VP,CS,10:10,D,toute,SA PV OH PS
+252,E,CS,VP,17:40,D,toute,PS OH PV SA
+401,T,VP,CS,09:40,MAD,ete,SA PV OH PS
+402,T,CS,VP,15:30,MAD,ete,PS OH PV SA
+501,N,VP,CS,03:30,SAD,neige,
+502,N,CS,VP,06:30,SAD,neige,
+503,N,VP,CL,04:00,SAD,neige,
+504,N,CL,VP,05:20,SAD,neige,

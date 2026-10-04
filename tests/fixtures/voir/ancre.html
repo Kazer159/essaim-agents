@@ -1,0 +1,3 @@
+<!doctype html><meta charset="utf-8"><title>ancre</title>
+<p id="p"></p>
+<script>document.getElementById("p").textContent = "page " + (location.hash.slice(1) || "accueil") + (location.search ? " avec " + location.search.slice(1) : "");</script>

@@ -1,0 +1,20 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Tableau de bord</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #fff; color: #1a1a1a; }
+  header { padding: 24px 32px; border-bottom: 1px solid #e5e5e5; }
+  h1 { margin: 0; font-size: 22px; }
+  .grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 32px; }
+  .carte { border: 1px solid #e5e5e5; border-radius: 10px; padding: 20px; }
+  .carte b { display: block; font-size: 28px; margin-bottom: 4px; }
+  /* Le piège : la règle de classe écrase l'attribut hidden. */
+  .voile { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; z-index: 999; }
+</style>
+<header><h1>Tableau de bord des ventes</h1></header>
+<div class="grille">
+  <div class="carte"><b>1 885</b>commandes livrées</div>
+  <div class="carte"><b>68,30 %</b>taux de service</div>
+  <div class="carte"><b>299 698,20 €</b>chiffre d'affaires</div>
+</div>
+<div class="voile" hidden></div>

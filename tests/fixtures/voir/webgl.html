@@ -1,0 +1,6 @@
+<!doctype html><title>WebGL</title><canvas id="c"></canvas><p id="r">aucun WebGL</p>
+<script>
+const gl = document.getElementById("c").getContext("webgl2");
+const info = gl && gl.getExtension("WEBGL_debug_renderer_info");
+if (gl) document.getElementById("r").textContent = "rendu : " + (info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER));
+</script>

@@ -1,0 +1,29 @@
+;; bac-a-sable-controle.sb — le profil des rôles qui n'écrivent pas le produit (DROITS[role].ecritProduit faux :
+;; recette, gardien-mesureur, chef).
+;;
+;; Pourquoi un profil et pas un refus d'outil : `bash` ne se filtre pas par son texte (`echo x > partage/app.js`,
+;; `sed -i`, un script Python…). Les outils write, edit et depot_* sont refusés par l'extension ; ici, partage/ est
+;; en lecture seule pour tout ce qui tourne dans le processus pi, bash et ses enfants compris. Le bureau de l'agent
+;; et le reste du run restent inscriptibles : la recette y écrit ses scénarios, le gardien ses cas réservés, et
+;; page_voir y range ses captures.
+;;
+;; Tout le reste vient du profil commun, importé tel quel. sandbox-exec n'accepte `import` qu'avec
+;; un chemin absolu (un chemin relatif est cherché dans le répertoire courant, le bureau de l'agent : « unable to
+;; open ») ; le chemin se bâtit sur le paramètre PROFILS, le dossier src/ du dépôt, et les paramètres passent à
+;; l'importé. Les règles écrites après l'import l'emportent sur les siennes.
+;;
+;; Paramètres passés par src/processus.ts avec -D : PROJET, HOME, PRIVE, PROFILS.
+(version 1)
+(import (string-append (param "PROFILS") "/bac-a-sable.sb"))
+
+;; partage/ entier, .git compris (déjà fermé) : ni écrire, ni supprimer, ni renommer ; le dossier lui-même non plus,
+;; sans quoi `mv partage ailleurs` puis une écriture dans `ailleurs` passerait.
+(deny file-write* (subpath (string-append (param "PROJET") "/partage")))
+
+;; La spec puis le plan : le chef écrit SPEC.md et PLAN.md, à la racine de partage/, et rien d'autre ; pour la
+;; recette et le gardien, SPEC et PLANF valent un chemin que personne ne peut créer (SANS_PRIVE).
+(allow file-write* (literal (param "SPEC")) (literal (param "PLANF")))
+
+;; Les essais : une correction écrite dans un essai entrerait dans le produit à l'adoption ;
+;; la recette et le gardien n'y écrivent pas, bash compris. Ils lisent tout.
+(deny file-write* (subpath (string-append (param "PROJET") "/essais")))

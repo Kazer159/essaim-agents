@@ -1,0 +1,7 @@
+id,nom,min,max,defaut,unite
+vitesse_neige,Vitesse sous la neige,50,100,70,%
+seuil_neige,Neige qui ferme la voie,10,60,30,cm
+arret_omnibus,Arrêt de l'omnibus en gare,1,3,1,min
+attente_max,Patience des voyageurs,20,120,60,min
+production_ardoise,Ardoise produite par jour,0,600,240,t
+fonte,Neige fondue par degré au-dessus de zéro,1,4,2,cm

@@ -1,0 +1,5 @@
+{"type":"tool_execution_start","toolCallId":"call_c1","toolName":"ticket_ouvrir","args":{"type":"amelioration","titre":"le moteur","description":"la boucle du jeu","charge":"Claude","chemins":["jeu.js"]}}
+{"type":"faux:toucher","chemin":"{RUN}/confie"}
+{"type":"faux:dormir","ms":4000}
+{"type":"message_end","message":{"role":"assistant","content":[{"type":"text","text":"J'ai confié le moteur."}],"api":"openai-completions","provider":"openrouter","model":"google/gemini-3.8-flash","usage":{"input":500,"output":40,"cacheRead":0,"cacheWrite":0,"totalTokens":540,"cost":{"input":0.0004,"output":0.0001,"cacheRead":0,"cacheWrite":0,"total":0.0005}},"stopReason":"stop","timestamp":1789994513296}}
+{"type":"agent_end"}

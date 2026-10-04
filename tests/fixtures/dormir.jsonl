@@ -1,0 +1,2 @@
+{"type":"tool_execution_start","toolCallId":"call_1","toolName":"salle_poster","args":{"texte":"je prends la page"}}
+{"type":"tool_execution_start","toolCallId":"call_2","toolName":"moi_dormir","args":{"message":"ma part est faite et rejouée ; rappelez-moi si la page bouge"}}

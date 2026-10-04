@@ -1,0 +1,62 @@
+quoi,detail,min,max,unite
+preparation,froid,6,10,minutes par portion
+preparation,chaud,12,20,minutes par portion
+preparation,dessert,5,9,minutes par portion
+preparation,bar,1,3,minutes par portion
+portions_en_meme_temps,froid,4,4,portions par cuisinier
+portions_en_meme_temps,chaud,3,3,portions par cuisinier
+portions_en_meme_temps,dessert,4,4,portions par cuisinier
+portions_en_meme_temps,bar,6,6,portions par barman
+personnel,serveur,4,4,personnes au départ de la soirée
+personnel,froid,2,2,personnes au départ de la soirée
+personnel,chaud,3,3,personnes au départ de la soirée
+personnel,dessert,1,1,personnes au départ de la soirée
+personnel,bar,1,1,personnes au départ de la soirée
+cout_personne,soiree,14000,14000,centimes par personne et par soirée
+geste_serveur,prendre_commande,2,4,minutes
+geste_serveur,servir_suite,1,2,minutes
+geste_serveur,encaisser,2,4,minutes
+geste_serveur,debarrasser_dresser,3,6,minutes
+client,choisir_avant_commande,4,10,minutes
+client,manger_entree,12,20,minutes
+client,manger_plat,20,30,minutes
+client,manger_dessert,12,18,minutes
+client,boire_cafe,5,10,minutes
+client,demander_addition_apres_dernier_plat,2,8,minutes
+client,arrivee_avant_heure_reservee,0,10,minutes
+client,arrivee_apres_heure_reservee,0,20,minutes
+client,non_venue,8,8,pour cent des réservations
+groupe,1,5,5,pour cent des groupes
+groupe,2,45,45,pour cent des groupes
+groupe,3,12,12,pour cent des groupes
+groupe,4,25,25,pour cent des groupes
+groupe,5,4,4,pour cent des groupes
+groupe,6,6,6,pour cent des groupes
+groupe,7,1,1,pour cent des groupes
+groupe,8,2,2,pour cent des groupes
+sans_reservation,19:00,4,4,couverts attendus dans le quart d'heure
+sans_reservation,19:15,6,6,couverts attendus dans le quart d'heure
+sans_reservation,19:30,10,10,couverts attendus dans le quart d'heure
+sans_reservation,19:45,14,14,couverts attendus dans le quart d'heure
+sans_reservation,20:00,16,16,couverts attendus dans le quart d'heure
+sans_reservation,20:15,14,14,couverts attendus dans le quart d'heure
+sans_reservation,20:30,12,12,couverts attendus dans le quart d'heure
+sans_reservation,20:45,10,10,couverts attendus dans le quart d'heure
+sans_reservation,21:00,8,8,couverts attendus dans le quart d'heure
+sans_reservation,21:15,6,6,couverts attendus dans le quart d'heure
+sans_reservation,21:30,4,4,couverts attendus dans le quart d'heure
+sans_reservation,21:45,3,3,couverts attendus dans le quart d'heure
+sans_reservation,22:00,2,2,couverts attendus dans le quart d'heure
+sans_reservation,22:15,1,1,couverts attendus dans le quart d'heure
+reservation_demandee,19:00,6,6,couverts demandés pour ce quart d'heure
+reservation_demandee,19:15,8,8,couverts demandés pour ce quart d'heure
+reservation_demandee,19:30,12,12,couverts demandés pour ce quart d'heure
+reservation_demandee,19:45,16,16,couverts demandés pour ce quart d'heure
+reservation_demandee,20:00,18,18,couverts demandés pour ce quart d'heure
+reservation_demandee,20:15,16,16,couverts demandés pour ce quart d'heure
+reservation_demandee,20:30,12,12,couverts demandés pour ce quart d'heure
+reservation_demandee,20:45,8,8,couverts demandés pour ce quart d'heure
+reservation_demandee,21:00,6,6,couverts demandés pour ce quart d'heure
+reservation_demandee,21:15,4,4,couverts demandés pour ce quart d'heure
+reservation_demandee,21:30,2,2,couverts demandés pour ce quart d'heure
+reservation_demandee,21:45,2,2,couverts demandés pour ce quart d'heure

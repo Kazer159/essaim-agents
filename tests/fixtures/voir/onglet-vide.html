@@ -1,0 +1,31 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Deux onglets</title>
+<style>
+  body { margin: 0; font: 14px system-ui; background: #101018; color: #eee; }
+  .zone { width: 900px; height: 600px; }
+  .zone:not(.visible) { display: none; }
+  #un { background: #101018; }
+  #deux { background: #101018; }
+</style></head><body>
+<button id="b-un">Premier</button>
+<button id="b-deux">Second</button>
+<button id="b-effacer">Tout effacer</button>
+<div class="zone visible" id="un"><canvas id="c-un" width="900" height="600"></canvas></div>
+<div class="zone" id="deux"><canvas id="c-deux" width="0" height="0"></canvas></div>
+<script>
+  // Le premier onglet dessine du bruit : une image qui ne se compresse pas.
+  var ctx = document.getElementById('c-un').getContext('2d');
+  var img = ctx.createImageData(900, 600);
+  for (var i = 0; i < img.data.length; i += 4) {
+    var v = (i * 2654435761) % 255;
+    img.data[i] = v; img.data[i + 1] = (v * 7) % 255; img.data[i + 2] = (v * 13) % 255; img.data[i + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  // Le second onglet a un canvas de taille nulle : la couture du run constellation.
+  function montrer(id) {
+    document.querySelectorAll('.zone').forEach(function (z) { z.classList.toggle('visible', z.id === id); });
+  }
+  document.getElementById('b-un').onclick = function () { montrer('un'); };
+  document.getElementById('b-deux').onclick = function () { montrer('deux'); };
+  document.getElementById('b-effacer').onclick = function () { document.body.innerHTML = ''; };
+</script>
+</body></html>

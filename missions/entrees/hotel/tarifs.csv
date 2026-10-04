@@ -1,0 +1,16 @@
+saison;debut;fin;type_chambre;prix_nuit
+basse;2026-06-01;2026-06-30;simple;78.00
+basse;2026-06-01;2026-06-30;double;96.00
+basse;2026-06-01;2026-06-30;twin;92.00
+basse;2026-06-01;2026-06-30;familiale;134.00
+basse;2026-06-01;2026-06-30;suite;185.00
+haute;2026-07-01;2026-08-20;simple;112.00
+haute;2026-07-01;2026-08-20;double;148.00
+haute;2026-07-01;2026-08-20;twin;142.00
+haute;2026-07-01;2026-08-20;familiale;198.00
+haute;2026-07-01;2026-08-20;suite;265.00
+moyenne;2026-08-21;2026-08-31;simple;94.00
+moyenne;2026-08-21;2026-08-31;double;121.00
+moyenne;2026-08-21;2026-08-31;twin;116.00
+moyenne;2026-08-21;2026-08-31;familiale;167.00
+moyenne;2026-08-21;2026-08-31;suite;224.00

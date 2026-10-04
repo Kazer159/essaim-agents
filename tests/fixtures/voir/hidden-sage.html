@@ -1,0 +1,11 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Hidden sage</title>
+<style>
+  /* La même modale, écrite correctement : la règle traite le cas caché. */
+  .voile { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; z-index: 999; }
+  .voile[hidden] { display: none; }
+  .info { padding: 24px; font-family: system-ui, sans-serif; }
+</style>
+<div class="info"><h1>Rapport du trimestre</h1><p>Trois cent douze commandes livrées.</p><p>Aucun retard signalé.</p></div>
+<div class="voile" hidden><p>Détail</p></div>

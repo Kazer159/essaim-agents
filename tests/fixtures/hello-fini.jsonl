@@ -1,0 +1,6 @@
+{"type":"tool_execution_start","toolCallId":"call_1","toolName":"salle_poster","args":{"texte":"bonjour de agent-01"}}
+{"type":"tool_execution_end","toolCallId":"call_1","toolName":"salle_poster","result":{"content":[{"type":"text","text":"message 1 posté dans principal"}],"details":{}},"isError":false}
+{"type":"tool_execution_start","toolCallId":"call_2","toolName":"moi_finir","args":{"raison":"message posté"}}
+{"type":"tool_execution_end","toolCallId":"call_2","toolName":"moi_finir","result":{"content":[{"type":"text","text":"session terminée : message posté"}],"details":{},"terminate":true},"isError":false}
+{"type":"message_end","message":{"role":"assistant","content":[{"type":"text","text":"C'est posté."}],"api":"openai-completions","provider":"openrouter","model":"google/gemini-3.8-flash","usage":{"input":1200,"output":80,"cacheRead":0,"cacheWrite":0,"totalTokens":1280,"cost":{"input":0.0009,"output":0.0003,"cacheRead":0,"cacheWrite":0,"total":0.0012}},"stopReason":"stop","timestamp":1789994513296}}
+{"type":"agent_end"}

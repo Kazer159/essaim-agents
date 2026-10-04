@@ -1,0 +1,169 @@
+;; bac-a-sable.sb — profil sandbox macOS (sandbox-exec) dans lequel le lanceur
+;; de l'essaim démarre chaque agent pi.
+;;
+;; Principe : tout est permis, sauf deux choses.
+;;   1. Écrire hors du run. Autorisés : le dossier du run (PROJET = runs/<run>,
+;;      qui contient le tableau SQLite, les bureaux, partage/ et les sessions),
+;;      les dossiers temporaires et les caches d'outils. `rm -rf ~/Projets` ou
+;;      `echo >> ~/.zshrc` échouent avec « Operation not permitted ».
+;;   2. Le réseau sortant autre que HTTPS et la boucle locale.
+;;
+;; Dit tel quel aux agents : tout HTTPS sortant passe, vers n'importe
+;; quel site (pi doit joindre OpenRouter, sandbox-exec ne filtre pas par nom de
+;; domaine). Un agent peut donc lire une documentation ; ce qui est interdit,
+;; c'est l'installation pendant un run (consignes), pas le réseau. La lecture
+;; des fichiers n'est pas restreinte non plus.
+;;
+;; Navigateur (sondes/chromium-sandbox.sh) : le
+;; chrome-headless-shell du cache Playwright démarre ici sans permission
+;; supplémentaire, à une condition : --no-sandbox (que playwright-core passe
+;; par défaut, chromiumSandbox: false). Sans lui, ses processus GPU et de rendu
+;; meurent sur « forbidden-sandbox-reinit » : Chromium ne peut pas ré-initialiser
+;; son propre bac à sable sous sandbox-exec (refus observé dans le journal
+;; système, avec chromiumSandbox: true la page « Target crashed »). La page
+;; reste dans CE bac à sable-ci : écriture limitée au run.
+;;
+;; Piège connu : un `(deny network-outbound)` sans filtre bloque aussi l'envoi
+;; d'un fichier sur une connexion locale déjà ouverte. D'où le filtre
+;; `(remote ip "*:*")` : seule l'ouverture d'une connexion vers l'extérieur est
+;; refusée.
+;;
+;; Paramètres passés par src/processus.ts avec -D : PROJET, HOME ; PRIVE, seulement quand la mission porte `## Type`
+;; (rôles des agents). Le profil de contrôle (bac-a-sable-controle.sb) importe celui-ci et y ajoute ses refus.
+(version 1)
+(allow default)
+
+(deny file-write*)
+(allow file-write*
+  (subpath (param "PROJET"))
+  (subpath "/private/tmp")
+  (subpath "/private/var/folders")
+  (subpath "/private/var/tmp")
+  (subpath (string-append (param "HOME") "/.cache"))
+  (subpath (string-append (param "HOME") "/.bun"))
+  (subpath (string-append (param "HOME") "/.npm"))
+  (subpath (string-append (param "HOME") "/.pi"))
+  (subpath (string-append (param "HOME") "/go/pkg"))
+  (subpath (string-append (param "HOME") "/Library/Caches"))
+  (literal "/dev/null")
+  (literal "/dev/zero")
+  (literal "/dev/random")
+  (literal "/dev/urandom")
+  (regex #"^/dev/tty")
+  (regex #"^/dev/pty")
+  (regex #"^/dev/fd/"))
+
+;; Le dépôt git du run : le lanceur en est le seul écrivain. Les agents ne touchent ni au .git
+;; du dossier partagé ni au fichier .git d'un essai : sinon un agent pourrait écrire core.fsmonitor ou un
+;; filtre que le git du lanceur, hors de ce bac à sable, exécuterait. Et rien pour s'identifier ailleurs :
+;; ni clés SSH, ni jeton gh, ni fichiers d'identifiants (le push est refusé faute de quoi s'authentifier).
+(deny file-write*
+  (subpath (string-append (param "PROJET") "/partage/.git"))
+  (regex #"/essais/[^/]+/\.git$"))
+;; Ce qui s'exécutera plus tard hors du bac à sable : le bun qui lance le lanceur et la vue
+;; (~/.bun/bin), les extensions que pi charge, le Chromium des juges Playwright. Le reste des caches reste
+;; ouvert (bun install, pi, npm).
+(deny file-write*
+  (subpath (string-append (param "HOME") "/.bun/bin"))
+  (subpath (string-append (param "HOME") "/.pi/agent/extensions"))
+  (subpath (string-append (param "HOME") "/Library/Caches/ms-playwright")))
+;; Et leurs parents, par leur seul nœud : `mv partage p2`, puis écrire p2/.git/config, puis le remettre,
+;; posait un filtre que le git du lanceur exécutait ; de même pour essais/<nom> et le run entier (vers /private/tmp,
+;; inscriptible). On crée et supprime toujours des fichiers dedans ; on ne renomme ni ne supprime le dossier lui-même.
+(deny file-write*
+  (literal (param "PROJET"))
+  (literal (string-append (param "PROJET") "/partage"))
+  (literal (string-append (param "PROJET") "/essais"))
+  (regex (string-append "^" (param "PROJET") "/essais/[^/]+$")))
+(deny file-read*
+  (subpath (string-append (param "HOME") "/.ssh"))
+  (subpath (string-append (param "HOME") "/.config/gh"))
+  (literal (string-append (param "HOME") "/.git-credentials"))
+  (literal (string-append (param "HOME") "/.netrc")))
+;; Les secrets du compte : les clés de pi (auth.json, et celles des profils Fusion), ~/.config (où
+;; vit aussi la clé réservée à l'essaim), Docker, Claude Code, AWS, npm, GnuPG, les historiques du terminal. HTTPS étant
+;; ouvert, tout ce qui se lit peut partir. AUTH_PI : auth.json, sauf pour un pi qui y renouvelle son jeton (Codex).
+(deny file-read*
+  (literal (param "AUTH_PI"))
+  (literal (string-append (param "HOME") "/.pi/agent/auth.json.bak"))
+  (subpath (string-append (param "HOME") "/.pi/agent/profiles"))
+  (subpath (string-append (param "HOME") "/.config"))
+  (subpath (string-append (param "HOME") "/.docker"))
+  (subpath (string-append (param "HOME") "/.claude"))
+  (literal (string-append (param "HOME") "/.claude.json"))
+  (subpath (string-append (param "HOME") "/.aws"))
+  (literal (string-append (param "HOME") "/.npmrc"))
+  (subpath (string-append (param "HOME") "/.gnupg"))
+  (literal (string-append (param "HOME") "/.zsh_history"))
+  (literal (string-append (param "HOME") "/.bash_history")))
+;; Le trousseau macOS (sondes/push-bac-a-sable.sh) : sans cette règle, un agent obtient le jeton
+;; de gh et le mot de passe GitHub du compte (git credential-osxkeychain), bac à sable ou pas. Refuser le service
+;; du trousseau ne gêne ni pi (Node), ni bun, ni curl, ni Chromium : aucun ne s'en sert pour HTTPS.
+(deny mach-lookup
+  (global-name "com.apple.SecurityServer")
+  (global-name "com.apple.securityd.xpc")
+  (global-name "com.apple.security.keychain-client"))
+
+;; Run isolé (sinon des agents lisent les anciens runs de la même mission et recopient leur moteur).
+;; Seulement quand le lanceur passe ISOLE (ESSAIM_ISOLER=1), au choix run par run : fermés en lecture, les runs, les juges (sondes) et les missions de tous les dépôts essaim*, le
+;; second cerveau, la mémoire de Claude et son dossier temporaire ; puis le run lui-même rouvert (la dernière règle
+;; qui s'applique gagne). Le bureau privé du gardien, fermé plus bas, le reste.
+(if (param "ISOLE")
+  (begin
+    (deny file-read-data
+      (regex (string-append "^" (param "HOME") "/Projets/essaim[^/]*/(runs|sondes|missions)(/|$)"))
+      (subpath (string-append (param "HOME") "/Projets/second-cerveau"))
+      (subpath (string-append (param "HOME") "/.claude"))
+      (subpath "/private/tmp/claude-501"))
+    (allow file-read-data (subpath (param "PROJET")))))
+
+;; Rôles des agents, actifs seulement quand le lanceur passe PRIVE : sans `## Type`, le
+;; paramètre est absent et ce bloc ne s'applique pas (un `(param …)` absent vaut faux ; sans le `if`, sandbox-exec
+;; refuse le profil entier). PRIVE : le bureau privé du gardien (agents/<gardien>/prive), où vivent ses cas réservés
+;; et ses variantes du monde. Un cas publié ne prouve rien : fermé aux autres en lecture comme en écriture. Le gardien
+;; lui-même, ou tout le monde dans un run sans gardien, reçoit un chemin qui n'existe pas.
+;; preuves/ : le registre des reçus du rejeu, écrit par le lanceur hors de ce bac à sable ; fermé en écriture à tous,
+;; comme .git. Les deux fermetures suivent un chemin, pas un fichier : renommer un parent (`mv agents/<gardien> x`)
+;; rouvrirait le bureau privé. D'où les parents fermés eux aussi, par leur seul nœud (literal, regex
+;; ancrée) : on crée toujours des fichiers dedans, on ne les renomme ni ne les supprime (le run lui-même ne se
+;; renomme pas : sa destination serait hors du run, déjà fermée). La regex est bâtie sur
+;; PROJET, que le lanceur fabrique (runs/<date>) : un point du chemin n'y vaut que plus large, jamais plus étroit.
+(if (param "PRIVE")
+  (begin
+    (deny file-read* file-read-data file-write* (subpath (param "PRIVE"))) ; file-read-data nommé : il doit battre l'allow file-read-data du run isolé
+    (deny file-write*
+      (subpath (string-append (param "PROJET") "/preuves"))
+      (literal (string-append (param "PROJET") "/agents"))
+      (regex (string-append "^" (param "PROJET") "/agents/[^/]+$")))))
+
+(deny network-outbound (remote ip "*:*"))
+(allow network-outbound (remote tcp "*:443"))
+(allow network-outbound (remote ip "localhost:*"))
+
+;; Run isolé : la vue (4700) et les livrables (4701) servent tous les runs ; web_lire ou curl vers eux
+;; rouvrait ce que la lecture ferme plus haut. Les autres ports locaux restent ouverts (le serveur d'un agent pour ses tests).
+(if (param "ISOLE")
+  (deny network-outbound (remote ip "localhost:4701")))
+;; La vue (4700), pour tous les runs : elle ferme, met en pause et supprime des runs, hors du bac à sable ;
+;; sa garde d'origine ne tient pas contre un curl qui écrit l'en-tête Origin qu'il veut.
+(deny network-outbound (remote ip "localhost:4700"))
+
+;; Le monde fixé par la mission : entrees/, posé par le lanceur avant les agents et remplacé par le juge,
+;; est en lecture seule pour tous, bash compris ; le refus d'outil ne couvre que write et edit.
+;; Le dossier lui-même non plus ne se renomme pas.
+(deny file-write* (subpath (string-append (param "PROJET") "/entrees")))
+
+;; Les consignes : consignes/, déposé par la vue et lu par le lanceur, est fermé en écriture
+;; à tous (le dossier lui-même compris : ni créé, ni renommé, ni remplacé par un lien). Sans quoi un agent y écrirait une
+;; « consigne » que le lanceur poste signée lanceur, ou y poserait un lien vers un secret.
+(deny file-write* (subpath (string-append (param "PROJET") "/consignes")))
+
+;; Les sockets Unix de la machine : le filtre réseau ne voit que les adresses IP. Par le socket de
+;; Docker (~/.docker/run/docker.sock), un agent lançait un conteneur qui montait ~ et y écrivait, hors du bac à sable ;
+;; ceux de Herdr et de Claude Code (/private/tmp/cc-socks) répondaient aussi. Fermés sous ~ et pour ces services ; le
+;; run garde les siens (un serveur d'agent sur un socket). Le DNS et HTTPS passent toujours.
+(deny network-outbound
+  (remote unix-socket (subpath (param "HOME")))
+  (remote unix-socket (subpath "/private/tmp/cc-socks"))
+  (remote unix-socket (subpath "/private/var/run/docker.sock")))
+(allow network-outbound (remote unix-socket (subpath (param "PROJET"))))

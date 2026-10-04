@@ -1,0 +1,14 @@
+{"type": "tool_execution_start", "toolCallId": "call_e0", "toolName": "salle_equipe", "args": {}}
+{"type": "faux:dormir", "ms": 400}
+{"type": "tool_execution_start", "toolCallId": "call_e1", "toolName": "salle_equipe", "args": {}}
+{"type": "faux:dormir", "ms": 400}
+{"type": "tool_execution_start", "toolCallId": "call_e2", "toolName": "salle_equipe", "args": {}}
+{"type": "faux:dormir", "ms": 400}
+{"type": "tool_execution_start", "toolCallId": "call_e3", "toolName": "salle_equipe", "args": {}}
+{"type": "faux:dormir", "ms": 400}
+{"type": "tool_execution_start", "toolCallId": "call_e4", "toolName": "salle_equipe", "args": {}}
+{"type": "faux:dormir", "ms": 400}
+{"type": "tool_execution_start", "toolCallId": "call_e5", "toolName": "salle_equipe", "args": {}}
+{"type": "faux:dormir", "ms": 400}
+{"type": "tool_execution_start", "toolCallId": "call_b1", "toolName": "salle_poster", "args": {"texte": "Antoine, le bouton Annuler ne restaure rien"}}
+{"type": "tool_execution_start", "toolCallId": "call_b2", "toolName": "moi_finir", "args": {"raison": "appel pass\u00e9"}}

@@ -1,0 +1,11 @@
+code,nom,ligne,pk,altitude,croisement_m,voyageurs_jour,village
+VP,Valbrune-Plaine,principale,0.0,420,999,900,Valbrune
+SA,Saint-Albin,principale,5.2,560,250,420,Saint-Albin
+LM,Les Martinets,principale,9.8,700,0,160,Les Martinets
+PV,Pont-de-Vausse,principale,14.1,850,180,300,Vausse
+LC,La Coste,principale,19.0,1010,0,90,La Coste
+OH,Orcel-le-Haut,principale,23.6,1180,300,380,Orcel
+LG,Les Genêts,principale,29.3,1390,0,70,Les Genêts
+PS,Praz-Sauvage,principale,35.0,1580,160,140,Praz-Sauvage
+CS,Col-du-Sorbier,principale,42.0,1780,999,260,Le Sorbier
+CL,Carrière de la Lèze,branche,4.5,1020,999,0,
