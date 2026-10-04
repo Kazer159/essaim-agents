@@ -298,39 +298,52 @@ dossier des documents à traiter, en lecture seule pour tous les agents, et `{EN
 chemins ; ceux des missions du dépôt sont dans `missions/entrees/`. Le juge peut alors les remplacer par les siens :
 une réussite obtenue en changeant le monde (une cuisson ramenée de 14 à 4 minutes…) ne passe plus.
 
-**Un exemple complet**, celui du [run d'exemple de la documentation](docs/README.md) :
+### 🍽️ Un exemple complet : la soirée du Refuge
 
-```markdown
-# Les réservations du Refuge
+La mission [`missions/exemples/soiree-refuge.md`](missions/exemples/soiree-refuge.md) demande l'application
+complète d'un restaurant de trente tables, et un but qui se mesure : **pendant une soirée tirée au hasard, aucun
+client n'attend plus de dix minutes**. Voici comment elle est construite, section par section.
 
-Le Refuge est un petit restaurant de quarante places. Il veut une page web pour prendre les réservations du soir,
-ouvrable en double-clic, sans serveur et sans internet.
+| Section | Ce qu'elle apporte | Règle |
+|---|---|---|
+| `## Le but` | le résultat mesurable (personne n'attend plus de dix minutes), pour qui (serveurs sur tablette, cuisiniers au passe, patron sur téléphone), et ce qui compte dans quel ordre | 1 |
+| `## Les données fournies` | six fichiers CSV, seule source de vérité : tables, carte, recettes, ingrédients, réservations, et le monde | 6 |
+| `## Le monde` | `rythme.csv` : temps de cuisson, gestes, arrivées. L'application le lit sans le changer, et le juge le remplace par le sien | 6 |
+| `## Personne n'attend` | ce que veut dire « attendre », ce qui ne compte pas comme une attente évitée (renvoyer un client, presser une table), et comment chaque attente se mesure | 1, 3 |
+| `## La soirée` | 220 couverts tirés au hasard pendant qu'elle se joue, les problèmes d'un vrai service, et le juge qui peut reprendre la main | 1 |
+| `## Les huit pages` | les adresses des pages et la règle des fenêtres d'accord en moins d'une seconde | 3 |
+| `## Le parcours d'un client` | de l'arrivée au débarrassage, sans rien ressaisir | 3 |
+| `## Les règles du restaurant` | les calculs exacts : réservation, rupture, TVA par taux, parts égales au centime près | 3 |
+| `## Ce qui compte d'abord : le design et l'expérience` | ce que le juge regarde en premier | 1 |
+| `## Ce que le juge fera, sans lire aucune doc` | ses gestes, annoncés d'avance : son propre monde, dix soirées, trois fenêtres, tout recalculé à la main | 3 |
+| `## Les documents` | `SOLUTIONS.md`, `DECISIONS.md`, `MODE-D-EMPLOI.md` | 3 |
+| `## Engagements` | « rien n'est publié ni envoyé hors de la machine » : suivi, jamais bloquant | 4 |
+| `## Type` | `application` : la salle reçoit ses rôles | 2 |
+| `## C'est fini quand` | uniquement des phrases que le juge ou une commande peuvent prouver | 2, 5 |
+| `## Livrable` et `## Vérification` | `index.html`, puis `bun test` et un parcours de visiteur rejoué par le lanceur | 2, 3 |
 
-Le serveur saisit le nom du client, l'heure et le nombre de couverts, puis valide. La réservation apparaît aussitôt
-dans la liste du soir, triée par heure. Un compteur affiche les places qui restent. Une réservation qui ferait
-dépasser quarante couverts est refusée, avec un message qui dit combien de places il reste.
+Ce qui la rend bonne :
 
-## Type
+- **Le but ne laisse rien à deviner.** « Une appli de restaurant » laisserait chaque agent imaginer la sienne ;
+  « personne n'attend plus de dix minutes, sur une soirée tirée au hasard » dit au chef quoi mesurer, aux
+  constructeurs quoi optimiser, et au gardien quoi vérifier.
+- **Le monde est dans les données.** Une salle tentée de raccourcir une cuisson pour tenir les dix minutes ne
+  peut pas : la cuisson vient de `rythme.csv`, que le juge remplace par le sien.
+- **Le juge est annoncé.** Les agents savent d'avance comment ils seront jugés : ils construisent pour ces
+  gestes-là, et la recette peut les rejouer avant lui.
 
-application
+Pour la lancer, avec ses données :
 
-## C'est fini quand
-
-`index.html` existe dans le dossier partagé, s'ouvre sans erreur, enregistre une réservation, la montre dans la
-liste triée par heure, et refuse une réservation qui dépasse quarante couverts.
-
-## Livrable
-
-index.html
-
-## Vérification
-
-grep -q "Réservations" index.html
+```sh
+bun src/lancer.ts --agents 10 --modele deepseek-flash-41 --plafond 5 --mission missions/exemples/soiree-refuge.md \
+  --fichier missions/entrees/restaurant-6/tables.csv --fichier missions/entrees/restaurant-6/carte.csv \
+  --fichier missions/entrees/restaurant-6/recettes.csv --fichier missions/entrees/restaurant-6/ingredients.csv \
+  --fichier missions/entrees/restaurant-6/rythme.csv --fichier missions/entrees/restaurant-6/reservations.csv
 ```
 
-Ce qui la rend bonne : le but dit **pour qui** (un serveur, un soir de service), **dans quelle situation** (sans
-serveur ni internet) et **la limite qui compte** (jamais plus de quarante couverts, avec un message utile). Le chef
-en tire deux exigences prouvables, E1 et E2, et le gardien peut écrire son propre cas pour la limite.
+> [!NOTE]
+> Le [run d'exemple de la documentation](docs/README.md) utilise une mission volontairement plus petite (une page
+> de réservations), pour que chaque écran reste lisible sur une capture.
 
 ---
 
