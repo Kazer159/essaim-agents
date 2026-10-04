@@ -90,9 +90,26 @@ Celui qui contrôle n'est jamais celui qui construit.
 
 ## Le lanceur et la vue
 
-Le lanceur (`src/lancer.ts`) démarre les agents, les surveille et coupe ceux qui sont muets, bloqués ou qui
-répètent la même chose en boucle. Il arrête une commande qui prend trop de mémoire, et tout le run au
-plafond de dépense.
+**Le lanceur, c'est le programme que tu démarres** (`just lancer`, ou `bun src/lancer.ts`). Ce n'est pas une IA :
+il ne réfléchit pas, ne décide rien du travail et ne coûte aucun token. Il tient la salle, comme un surveillant
+d'examen tient une salle d'examen. Tout ce qui est signé `lanceur` dans la vue (un message, un commit, un reçu) vient
+de lui.
+
+Ce qu'il fait, du début à la fin d'un run :
+
+- **Il ouvre la salle** : il lit la mission, crée le dossier du run, le tableau et le dépôt git, attribue les
+  prénoms et les rôles, et démarre chaque agent dans son bac à sable.
+- **Il fait passer les messages** : il réveille l'agent à qui on écrit, transmet les consignes de la vue au chef,
+  écrit au chef les paliers de budget, et commite chaque écriture au nom de son auteur.
+- **Il surveille** : il coupe un agent muet, bloqué ou qui tourne en boucle, arrête une commande qui prend trop de
+  mémoire, et coupe tout le monde au plafond de dépense.
+- **Il prouve** : c'est lui, hors des agents, qui rejoue les preuves et écrit les reçus. Aucun agent ne peut
+  affirmer que son travail marche : seul un reçu du lanceur qui passe le prouve.
+- **Il constate la fin** : il rejoue la vérification de la mission, décide si le run est accepté ou incomplet, et
+  écrit le bilan.
+
+Les agents, eux, sont les modèles d'IA : ils réfléchissent, discutent et construisent. Le lanceur les fait
+travailler, mais ne travaille jamais à leur place.
 
 La vue (`just vue`, puis http://127.0.0.1:4700) suit le run en direct : le fil des messages, la fiche de
 chaque agent, les tickets, l'historique git, et une vue 3D en forme de cerveau qui montre qui parle à qui.

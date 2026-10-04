@@ -5,6 +5,10 @@
 Ce que le lanceur, les outils et le bac à sable font respecter pendant un run, au-delà des grandes lignes du
 README. Chaque règle est née d'un défaut vu dans un vrai run.
 
+Le **lanceur**, qui revient souvent ici, est le programme que tu démarres pour lancer un run : ce n'est pas une IA,
+il ne coûte rien, il tient la salle (il réveille, surveille, commite, rejoue les preuves et constate la fin). Voir
+[le lanceur et la vue](../README.md#le-lanceur-et-la-vue).
+
 ## A. Parler et se réveiller
 
 **A1. Un message est court et adressé.** Le prénom de celui qu'il concerne en tête, puis une décision, un fait

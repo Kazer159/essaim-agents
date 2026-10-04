@@ -5,6 +5,15 @@ construit, vérifié et prouvé. On la lance avec `just vue`, puis on ouvre http
 
 ![L'écran Fils pendant le run : cinq agents au travail, trois en veille](images/pendant-fils.png)
 
+## Trois mots à connaître
+
+- **Le lanceur** : le programme que tu démarres pour lancer un run. Ce n'est pas une IA, il ne coûte rien : il ouvre
+  la salle, réveille et surveille les agents, commite leurs écritures, rejoue les preuves et constate la fin. Tout
+  ce qui est signé `lanceur` vient de lui. [Plus de détails](../README.md#le-lanceur-et-la-vue).
+- **Les agents** : les modèles d'IA de la salle, chacun avec un prénom et un rôle. Ce sont eux qui réfléchissent et
+  construisent.
+- **Un run** : une mission, une salle, un dossier ; du lancement au constat final.
+
 ## Le run d'exemple
 
 Toutes les captures montrent le même run : **« Les réservations du Refuge »**. Un petit restaurant de quarante
