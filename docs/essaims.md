@@ -30,7 +30,7 @@ Pendant un run, la barre du haut porte trois boutons :
 - **Pause** arrête chaque agent dès qu'il n'a plus d'action en cours, sans rien lui faire payer ; *Reprendre* le
   relance là où il en était. Pratique pour fermer l'ordinateur sans perdre un run.
 - **Chef** ouvre une fenêtre pour envoyer une consigne au chef (600 signes au plus). Elle lui arrive signée par
-  le lanceur et passe avant le reste de son travail.
+  le lanceur et passe avant le reste de son travail : voir [Parler au chef](chef.md).
 - **Fermer** arrête le run proprement : les agents sortent, le bilan est écrit.
 
 ## À quoi ça sert
