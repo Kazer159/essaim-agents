@@ -52,7 +52,9 @@ reste du travail, puis attend sa réponse (dix minutes au plus).
 
 **C1. La spec, puis le plan.** Le chef écrit `SPEC.md` (le but, le problème mesuré, l'approche et les options
 écartées, la preuve de chaque exigence), puis `PLAN.md` (le tableau des tickets). Deux fichiers de 6 000 signes
-au plus, chacun jugé par la recette et le gardien, qui peuvent le refuser. La spec validée est figée.
+au plus, chacun jugé par la recette et le gardien : `à revoir` avec ce qui manque, ou `valide`. Une version
+refusée revient au chef, qui en écrit une nouvelle. La spec validée par chaque contrôleur est figée. Le détail :
+[la spec : réfléchie, puis jugée](../README.md#la-spec--réfléchie-puis-jugée).
 
 **C2. Les explorations.** Pendant la préparation, un constructeur ne reçoit qu'une exploration : une question dont
 la réponse est une mesure (un temps, un compte, une liste). On mesure avant de décider.

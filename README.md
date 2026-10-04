@@ -76,7 +76,7 @@ Celui qui contrôle n'est jamais celui qui construit.
    explorations, des questions dont la réponse est une mesure.
 2. **La spec** (`SPEC.md`) : le but, le problème mesuré, l'approche choisie et les options écartées, la
    commande qui prouvera chaque exigence. Une exigence longue se découpe en jalons. La recette et le
-   gardien peuvent la refuser.
+   gardien la jugent et la refusent si elle a un défaut (voir [la spec : réfléchie, puis jugée](#la-spec--réfléchie-puis-jugée)).
 3. **Le plan** (`PLAN.md`) : le tableau des tickets, avec qui construit et qui vérifie (jamais le même).
 4. **La construction** : chaque constructeur propose son travail avec sa preuve ; l'intégrateur la rejoue,
    adopte ou renvoie avec la commande qui échoue.
@@ -87,6 +87,45 @@ Celui qui contrôle n'est jamais celui qui construit.
    temps de revoir la spec et le plan.
 7. **La fin** : le run n'est accepté que si toutes les alertes sont fermées et toutes les exigences
    attestées. Aucun agent ne peut déclarer seul que c'est fini.
+
+## La spec : réfléchie, puis jugée
+
+Avant que quiconque construise, la salle écrit et fait juger sa façon de résoudre la mission. C'est la spec.
+
+**Le chef la réfléchit.** Il commence par mesurer : il confie des explorations aux constructeurs (« combien de
+réservations un vendredi ? »), dont la réponse est un chiffre, pas une opinion. Puis il écrit `SPEC.md`, 6 000
+signes au plus :
+
+- **le but** en une phrase ;
+- **le problème, mesuré** : ce qui empêche d'y arriver aujourd'hui ;
+- **l'approche choisie**, et **les options écartées avec leur raison** (dans le run d'exemple : pas de
+  `localStorage`, qui laisserait des réservations fantômes d'un soir à l'autre), appuyées sur ce que les
+  explorations ont mesuré ;
+- **chaque exigence avec la commande qui la prouvera** et le rôle qui la vérifiera.
+
+**Les contrôleurs la jugent, et la refusent si elle a un défaut.** La recette et le gardien la lisent contre le
+texte entier de la mission, chacun de son côté, et répondent `valide` ou `à revoir` avec leur raison. Ils se
+demandent :
+
+- l'approche mène-t-elle vraiment au but, **sans fabriquer de réussite** (une règle de la mission assouplie, une
+  mesure arrangée) ?
+- chaque exigence a-t-elle une commande de preuve que le lanceur pourra rejouer telle qu'elle est écrite ?
+- une phrase de la mission a-t-elle été oubliée, ou mal rangée ?
+
+Une spec **à revoir** retourne au chef avec ce qui manque. Il en écrit une nouvelle version, numérotée, qui est
+jugée à nouveau. Elle n'est validée que quand **chaque** contrôleur présent l'a validée, puis elle est **figée** :
+plus personne ne la réécrit en douce.
+
+**Le plan suit le même chemin.** `PLAN.md` découpe la spec en tickets. Les contrôleurs vérifient que chaque
+exigence a ses tickets, que chaque ticket a un porteur et **un vérificateur qui n'est pas son porteur**, et que le
+coût tient dans le budget. Tant que le plan n'est pas validé, les constructeurs attendent.
+
+**Une spec peut encore tomber en cours de route.** Si le run montre qu'elle se trompait, le surveillant écrit au
+chef « la spec suppose X, le run mesure Y ». Si le chef accepte, la spec est rouverte, réécrite et jugée de
+nouveau, et les tickets touchés sont gelés en attendant.
+
+Pour que la salle ne discute pas sans fin, le lanceur clôt la préparation après 45 minutes sans plan validé, ou
+quand un quart du budget est dépensé.
 
 ## Le lanceur et la vue
 
