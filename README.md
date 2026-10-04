@@ -7,6 +7,10 @@ mission dans un fichier texte, tu lances, et les agents s'organisent pour livrer
 travaillent pas chacun dans leur coin : avant de construire, ils mesurent, se relisent et se contredisent,
 et ils continuent pendant tout le run.
 
+![La vue pendant un run : la discussion, les tickets, et qui travaille sur quoi](docs/images/pendant-fils.png)
+
+**[Voir l'interface, écran par écran →](docs/README.md)** : chaque écran de la vue expliqué sur un run d'exemple.
+
 ## ⚠️ Sécurité, à lire avant d'essayer
 
 - Les agents exécutent de **vraies commandes shell sur ta machine**. Ils tournent dans un bac à sable macOS
