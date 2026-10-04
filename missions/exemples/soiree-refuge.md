@@ -72,6 +72,11 @@ Le juge veut voir vivre un service du soir complet, des premiers appels de l'apr
   solution se trouve à l'instant** ; ce qui peut s'anticiper se voit **avant** d'arriver.
 - Le juge regarde la soirée entière en quelques minutes, peut la ralentir, l'arrêter, la reprendre, la relancer,
   et **reprendre la main** à tout moment : installer un client, servir, encaisser lui-même.
+- **Des boutons font arriver du monde, à tout moment** : un client, un groupe, ou plusieurs clients d'un coup,
+  tirés au hasard selon `rythme.csv`, poussent la porte à cet instant ; un autre bouton fait sonner le téléphone
+  pour une réservation. Chacun est traité comme les autres, du placement au départ, et on voit comment le
+  restaurant s'en sort : une table trouvée, une liste d'attente, une cuisine qui suit ou qui déborde, et ce que
+  ça change aux attentes de tous.
 
 ## Les huit pages
 
@@ -126,6 +131,8 @@ s'annulent, et une application qui reste rapide avec trente tables pleines et ce
 - mesurer les attentes sur au moins dix soirées tirées au hasard, avec sa propre horloge, et les recalculer
   depuis ce qu'il voit ;
 - arrêter la soirée à un instant pris au hasard et fouiller ce que l'application garde : aucune arrivée future ;
+- au plus fort de la soirée, faire arriver d'un bouton un client, puis un groupe, puis une vague de clients, et
+  suivre chacun jusqu'à son départ : personne n'attend plus de dix minutes, ou l'application dit pourquoi ;
 - suivre trois clients d'un bout à l'autre, dans trois fenêtres à la fois (tablette 1024 × 768, ordinateur
   1440 × 900, téléphone 390 × 844) ;
 - tout recalculer à la main à la fin : couverts, chiffre, TVA, ticket moyen, attentes, stocks et leur valeur.
@@ -152,7 +159,8 @@ application
 Sur toutes les soirées tirées au hasard, dans le monde de `rythme.csv` et dans celui du juge, aucun client n'attend
 plus de dix minutes à aucune étape, et chaque attente se mesure et se voit ; les huit pages s'ouvrent à leur
 adresse sans erreur ni exception ; trois fenêtres ouvertes restent d'accord en moins d'une seconde ; à la fin de
-chaque soirée, les chiffres du tableau de bord, des stocks et de l'archive se recalculent à la main ; `bun test`
+chaque soirée, les chiffres du tableau de bord, des stocks et de l'archive se recalculent à la main ; les boutons
+font arriver un client, un groupe ou plusieurs clients, et chacun est suivi jusqu'à son départ ; `bun test`
 passe dans le dossier partagé et couvre les règles du restaurant ; `SOLUTIONS.md`, `DECISIONS.md` et
 `MODE-D-EMPLOI.md` sont écrits.
 

@@ -310,7 +310,7 @@ client n'attend plus de dix minutes**. Voici comment elle est construite, sectio
 | `## Les données fournies` | six fichiers CSV, seule source de vérité : tables, carte, recettes, ingrédients, réservations, et le monde | 6 |
 | `## Le monde` | `rythme.csv` : temps de cuisson, gestes, arrivées. L'application le lit sans le changer, et le juge le remplace par le sien | 6 |
 | `## Personne n'attend` | ce que veut dire « attendre », ce qui ne compte pas comme une attente évitée (renvoyer un client, presser une table), et comment chaque attente se mesure | 1, 3 |
-| `## La soirée` | 220 couverts tirés au hasard pendant qu'elle se joue, les problèmes d'un vrai service, et le juge qui peut reprendre la main | 1 |
+| `## La soirée` | 220 couverts tirés au hasard pendant qu'elle se joue, les problèmes d'un vrai service, le juge qui peut reprendre la main, et **des boutons pour faire arriver un client, un groupe ou plusieurs clients d'un coup** | 1 |
 | `## Les huit pages` | les adresses des pages et la règle des fenêtres d'accord en moins d'une seconde | 3 |
 | `## Le parcours d'un client` | de l'arrivée au débarrassage, sans rien ressaisir | 3 |
 | `## Les règles du restaurant` | les calculs exacts : réservation, rupture, TVA par taux, parts égales au centime près | 3 |
@@ -331,6 +331,10 @@ Ce qui la rend bonne :
   peut pas : la cuisson vient de `rythme.csv`, que le juge remplace par le sien.
 - **Le juge est annoncé.** Les agents savent d'avance comment ils seront jugés : ils construisent pour ces
   gestes-là, et la recette peut les rejouer avant lui.
+- **On peut la mettre à l'épreuve.** L'application livrée a des boutons qui font arriver, à l'instant choisi, un
+  client, un groupe ou une vague de clients, ou qui font sonner le téléphone pour une réservation. Au plus fort de
+  la soirée, on appuie, et on regarde comment le restaurant s'en sort : une table trouvée ou une liste d'attente,
+  une cuisine qui suit ou qui déborde, et les attentes de chacun, en direct.
 
 Pour la lancer, avec ses données :
 
